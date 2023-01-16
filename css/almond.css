@@ -5,85 +5,91 @@
 /** Project: https://github.com/alvaromontoro/almond.css   **/
 /************************************************************/
 
-/* 
-@font-face {
-	font-family: Overpass-Light;
-	src: url('/font/Overpass-Thin.woff2') format('woff2');
-	src: url('/font/Overpass-Light.woff2') format('woff2');
+@media (prefers-color-scheme: light) {
+    :root,
+    [data-theme='light'] {
+        /* Colors */
+        --primaryH: 210;
+        --primaryS: 50%;
+        --primaryL: 40%;
+        --primary-bg: hsl(0, 0%, 100%);
+        --secondaryH: 0;
+        --secondaryS: 0%;
+        --secondaryL: 13%;
+        --secondary-bg: hsl(0, 0%, 100%);
+
+        /* Status */
+        --error: #d00;
+        --warning: #ec0;
+        --info: #369;
+        --correct: #080;
+        /* Colors */
+        --bs-blue: #0d6efd;
+        --bs-indigo: #6610f2;
+        --bs-purple: #6f42c1;
+        --bs-pink: #d63384;
+        --bs-red: #dc3545;
+        --bs-orange: #fd7e14;
+        --bs-yellow: #ffc107;
+        --bs-green: #198754;
+        --bs-teal: #20c997;
+        --bs-cyan: #0dcaf0;
+        --bs-black: #000;
+        --bs-white: #fff;
+        --bs-gray: #6c757d;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root[data-theme='dark'] {
+        /* Colors */
+        --primaryH: 210;
+        --primaryHI: 210deg;
+        --primaryS: 50%;
+        --primaryL: 40%;
+        --primary-bg: hsl(213, 16%, 24%);
+        --secondaryH: 0;
+        --secondaryS: 0%;
+        --secondaryL: 70%;
+        --secondary-bg: hsl(215, 18%, 13%);
+        /* Status */
+        --error: #d00;
+        --warning: #ec0;
+        --info: #369;
+        --correct: #080;
+        /* Colors */
+        --bs-blue: #0d6efd;
+        --bs-indigo: #6610f2;
+        --bs-purple: #6f42c1;
+        --bs-pink: #d63384;
+        --bs-red: #dc3545;
+        --bs-orange: #fd7e14;
+        --bs-yellow: #ffc107;
+        --bs-green: #198754;
+        --bs-teal: #20c997;
+        --bs-cyan: #0dcaf0;
+        --bs-black: #000;
+        --bs-white: #fff;
+        --bs-gray: #6c757d;
+    }
 }
 
 @font-face {
-	font-family: Overpass-Regular;
-	src: url('/font/Overpass-Medium.woff2') format('woff2');
-	src: url('/font/Overpass-Regular.woff2') format('woff2');
-} */
-
-:root,
-[data-theme='light'] {
-    /* Colors */
-    --primaryH: 210;
-    --primaryS: 50%;
-    --primaryL: 40%;
-    --primary-bg: hsl(0, 0%, 100%);
-    --secondaryH: 0;
-    --secondaryS: 0%;
-    --secondaryL: 13%;
-    --secondary-bg: hsl(0, 0%, 100%);
-
-    /* Status */
-    --error: #d00;
-    --warning: #ec0;
-    --info: #369;
-    --correct: #080;
-    /* Colors */
-    --bs-blue: #0d6efd;
-    --bs-indigo: #6610f2;
-    --bs-purple: #6f42c1;
-    --bs-pink: #d63384;
-    --bs-red: #dc3545;
-    --bs-orange: #fd7e14;
-    --bs-yellow: #ffc107;
-    --bs-green: #198754;
-    --bs-teal: #20c997;
-    --bs-cyan: #0dcaf0;
-    --bs-black: #000;
-    --bs-white: #fff;
-    --bs-gray: #6c757d;
+    font-family: Overpass-Light;
+    src: url('../font/Overpass-Light.woff2') format('woff2');
+    /* src: url('../font/Overpass-Thin.woff2') format('woff2'); */
 }
-:root[data-theme='dark'] {
-    /* Colors */
-    --primaryH: 210;
-    --primaryS: 50%;
-    --primaryL: 40%;
-    --primary-bg: hsl(215, 18%, 13%);
-    --secondaryH: 0;
-    --secondaryS: 0%;
-    --secondaryL: 70%;
-    --secondary-bg: hsl(215, 18%, 13%);
-    /* Status */
-    --error: #d00;
-    --warning: #ec0;
-    --info: #369;
-    --correct: #080;
-    /* Colors */
-    --bs-blue: #0d6efd;
-    --bs-indigo: #6610f2;
-    --bs-purple: #6f42c1;
-    --bs-pink: #d63384;
-    --bs-red: #dc3545;
-    --bs-orange: #fd7e14;
-    --bs-yellow: #ffc107;
-    --bs-green: #198754;
-    --bs-teal: #20c997;
-    --bs-cyan: #0dcaf0;
-    --bs-black: #000;
-    --bs-white: #fff;
-    --bs-gray: #6c757d;
+
+@font-face {
+    font-family: Overpass-Regular;
+    src: url('../font/Overpass-Medium.woff2') format('woff2');
+    /* src: url('../font/Overpass-Regular.woff2') format('woff2'); */
 }
+
 :root {
     /* Font */
-    --font-family-text: Overpass, Arial, sans-serif;
-    --font-family-headline: Overpass, Arial, sans-serif;
+    --font-family-text: 'Overpass-Light', Arial, sans-serif;
+    --font-family-headline: 'Overpass-Regular', Arial, sans-serif;
     --font-size-root: 16px;
     --font-weight-bolder: 700;
     --font-weight-bold: 400;
@@ -594,6 +600,9 @@ a:link,
 a:visited,
 a:active,
 a:focus {
+    --font-size-link: var(--font-size-root);
+    /* --font-size-link: 2rem; */
+    font-size: var(--font-size-link);
     color: var(--primary);
     font-weight: var(--font-weight-bold);
     text-decoration: none;
@@ -991,47 +1000,66 @@ video {
     max-width: 100%;
 }
 
-a[href^='mailto:'],
-a[href^='tel:'],
-a[href^='sms:'],
-a[href^='file:'],
-a[rel~='external'],
-a[rel~='bookmark'],
-a[download] {
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-    background-position: 0rem 50%;
+a:before,
+a[href^='mailto:']:before,
+a[href^='tel:']:before,
+a[href^='sms:']:before,
+a[href^='file:']:before,
+a[rel~='external']:before,
+a[rel~='bookmark']:before,
+a[download]:before {
     display: inline-block;
-    padding-left: 1.25rem;
+    width: var(--font-size-link);
+    height: var(--font-size-link);
+    margin-inline: 0.3rem;
+    content: '';
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(110%);
+    transition: filter var(--theme-toggle__classic--duration) ease;
+}
+a[href^='mailto:']:hover::before,
+a[href^='tel:']:hover::before,
+a[href^='sms:']:hover::before,
+a[href^='file:']:hover::before,
+a[rel~='external']:hover::before,
+a[rel~='bookmark']:hover::before,
+a[download]:hover::before {
+    filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(10%);
+}
+a[href^='mailto:']::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M1,5 39,5 39,35 1,35 1,5 20,22 39,5' stroke='red' stroke-width='2' fill='none' /></svg>");
+    transform: translateY(calc(var(--font-size-link) / 10));
 }
 
-a[href^='mailto:'] {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M1,5 39,5 39,35 1,35 1,5 20,22 39,5' stroke='%23999' stroke-width='2' fill='none' /></svg>");
+a[href^='tel:']:before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><g fill='none' stroke='red' stroke-width='2'><path d='M8,1 34,1 34,39 8,39Z M12,5 30,5 30,30 12,30Z' /><circle cx='21' cy='34' r='2' /></g></svg>");
+}
+a[href^='sms:']:before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M2,2 38,2 38,28 22,28 12,38 12,28 2,28Z' fill='none' stroke='red' stroke-width='2'/></svg>");
+}
+a[href^='file:']:before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 28,2 35,9 35,38 5,38Z M28,2 28,9 35,9' fill='none' stroke='red' stroke-width='2'/></svg>");
+}
+a[rel~='external']:before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M28,4 39,4 39,15 M39,4 23,20 M28,9 7,9 7,34 35,34 35,15' fill='none' stroke='red' stroke-width='2'/></svg>");
+    transform: translateY(calc(var(--font-size-link) / 10));
+}
+a[rel~='bookmark']:before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 35,2 35,38 20,25 5,38Z' fill='none' stroke='red' stroke-width='2'/></svg>");
+}
+a[download]:before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 28,2 35,9 35,38 5,38Z M28,2 28,9 35,9 M20,10 20,30 M11,21 20,30 29,21' fill='none' stroke='red' stroke-width='2'/></svg>");
 }
 
-a[href^='tel:'] {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><g fill='none' stroke='%23999' stroke-width='2'><path d='M8,1 34,1 34,39 8,39Z M12,5 30,5 30,30 12,30Z' /><circle cx='21' cy='34' r='2' /></g></svg>");
-}
-
-a[href^='sms:'] {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M2,2 38,2 38,28 22,28 12,38 12,28 2,28Z' fill='none' stroke='%23999' stroke-width='2'/></svg>");
-}
-
-a[href^='file:'] {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 28,2 35,9 35,38 5,38Z M28,2 28,9 35,9' fill='none' stroke='%23999' stroke-width='2'/></svg>");
-}
-
-a[download] {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 28,2 35,9 35,38 5,38Z M28,2 28,9 35,9 M20,10 20,30 M11,21 20,30 29,21' fill='none' stroke='%23999' stroke-width='2'/></svg>");
-}
-
-a[rel~='external'] {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M28,4 39,4 39,15 M39,4 23,20 M28,9 7,9 7,34 35,34 35,15' fill='none' stroke='%23999' stroke-width='2'/></svg>");
-}
-
-a[rel~='bookmark'] {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 35,2 35,38 20,25 5,38Z' fill='none' stroke='%23999' stroke-width='2'/></svg>");
-}
+/* a[href^='mailto:'],a[href^='tel:'],a[href^='sms:'],a[href^='file:'],a[rel~='external'],a[rel~='bookmark'],a[download] {       position: relative;    background-repeat: no-repeat;    background-size: 1rem 1rem;    background-position: 0rem 50%;    display: inline-block;    padding-left: 1.25rem;} 
+a[href^='mailto:'] { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M1,5 39,5 39,35 1,35 1,5 20,22 39,5' stroke='%23999' stroke-width='2' fill='none' /></svg>");}
+a[href^='tel:'] { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><g fill='none' stroke='%23999' stroke-width='2'><path d='M8,1 34,1 34,39 8,39Z M12,5 30,5 30,30 12,30Z' /><circle cx='21' cy='34' r='2' /></g></svg>");}
+a[href^='sms:'] { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M2,2 38,2 38,28 22,28 12,38 12,28 2,28Z' fill='none' stroke='%23999' stroke-width='2'/></svg>");}
+a[href^='file:'] { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 28,2 35,9 35,38 5,38Z M28,2 28,9 35,9' fill='none' stroke='%23999' stroke-width='2'/></svg>");}
+a[download] { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 28,2 35,9 35,38 5,38Z M28,2 28,9 35,9 M20,10 20,30 M11,21 20,30 29,21' fill='none' stroke='%23999' stroke-width='2'/></svg>");}
+a[rel~='external'] { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M28,4 39,4 39,15 M39,4 23,20 M28,9 7,9 7,34 35,34 35,15' fill='none' stroke='%23999' stroke-width='2'/></svg>");}
+a[rel~='bookmark'] { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M5,2 35,2 35,38 20,25 5,38Z' fill='none' stroke='%23999' stroke-width='2'/></svg>");} */
 
 /* input images */
 input[type='date'],

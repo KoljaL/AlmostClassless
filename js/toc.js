@@ -15,6 +15,7 @@ function markerTOC() {
         tocItems = tocItems.map(function (item) {
             var anchor = item.querySelector('a');
             var target = document.getElementById(anchor.getAttribute('href').slice(1));
+            console.log(target);
             return {
                 listItem: item,
                 anchor: anchor,
@@ -65,13 +66,13 @@ function markerTOC() {
                 pathEnd = Math.max(item.pathEnd, pathEnd);
                 visibleItems += 1;
                 item.listItem.classList.add('visible');
-            } else {
+                // } else {
+            } else if (visibleItems <= 1) {
                 item.listItem.classList.remove('visible');
             }
         });
-
-        // Specify the visible path or hide the path altogether
-        // if there are no visible items
+        // console.log(visibleItems);
+        // Specify the visible path or hide the path altogether if there are no visible items
         if (visibleItems > 0 && pathStart < pathEnd) {
             if (pathStart !== lastPathStart || pathEnd !== lastPathEnd) {
                 tocPath.setAttribute('stroke-dashoffset', '1');
@@ -79,6 +80,7 @@ function markerTOC() {
                 tocPath.setAttribute('opacity', 1);
             }
         } else {
+            // } else if (visibleItems <= 1) {
             tocPath.setAttribute('opacity', 0);
         }
         lastPathStart = pathStart;

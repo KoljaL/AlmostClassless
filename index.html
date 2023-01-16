@@ -75,28 +75,9 @@
     section>h5,
     section>h6 {
       margin-top: 4rem;
-      /* border-bottom: 1px solid var(--error); */
-
-    }
-
-    /* .section .section {
-      margin-bottom: 3rem;
-    }
-
-    .section::after {
-      display: block;
-      border-bottom: 1px solid var(--error);
-    } */
-
-
-    h1 a:after,
-    h2 a:after,
-    h3 a:after,
-    h4 a:after,
-    h5 a:after,
-    h6 a:after {
-      /* content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==); */
-      margin: 0 3px 0 5px;
+      border-bottom: 1px solid var(--primary-light);
+      padding-right: 3rem;
+      width: fit-content;
     }
 
 
@@ -148,6 +129,7 @@
       </p>
     </header>
     <main>
+
 
       <section>
         <h2 class="forTOC">Colors</h2>
@@ -238,6 +220,8 @@
             <a href="https://alvaromontoro.com">Alvaro Montoro</a> wrote this document.
           </address>
           <h4 class="forTOC"> Fancy links</h4>
+          <div class="module">ww</div>
+          <a class="module">aa</a>
 
           <p>Some links may be special depending on their href or their rel:</p>
           <p>
@@ -454,48 +438,51 @@
             <label for="checkbox-3">Disabled Checkbox</label>
           </p>
         </section>
-        <fieldset>
-          <legend>Other Form Controls</legend>
-          <p>
-            <label for="select">Select</label><br />
-            <select id="select">
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-              <optgroup label="Subgroup">
+        <section class="section">
+          <h3 class="forTOC">Other Form Controls</h3>
+          <fieldset>
+            <legend>Fieldset Legend</legend>
+            <p>
+              <label for="select">Select</label><br />
+              <select id="select">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                <optgroup label="Subgroup">
+                  <option value="4">Option 4</option>
+                  <option value="5">Option 5</option>
+                </optgroup>
+              </select>
+            </p>
+            <p>
+              <label for="selectmultiple">Multiselect</label><br />
+              <select id="selectmultiple" multiple>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
                 <option value="4">Option 4</option>
                 <option value="5">Option 5</option>
-              </optgroup>
-            </select>
-          </p>
-          <p>
-            <label for="selectmultiple">Multiselect</label><br />
-            <select id="selectmultiple" multiple>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-              <option value="4">Option 4</option>
-              <option value="5">Option 5</option>
-              <option value="6">Option 6</option>
-              <optgroup label="Subgroup">
-                <option value="7">Option 7</option>
-                <option value="8">Option 8</option>
-              </optgroup>
-            </select>
-          </p>
-          <p>
-            <label for="input-range">Input Range</label><br />
-            <input type="range" id="input-range" />
-          </p>
-          <p>
-            <label for="input-color">Input Color</label><br />
-            <input type="color" id="input-color" />
-          </p>
-          <p>
-            <label for="input-file">Input File</label><br />
-            <input type="file" id="input-file" />
-          </p>
-        </fieldset>
+                <option value="6">Option 6</option>
+                <optgroup label="Subgroup">
+                  <option value="7">Option 7</option>
+                  <option value="8">Option 8</option>
+                </optgroup>
+              </select>
+            </p>
+            <p>
+              <label for="input-range">Input Range</label><br />
+              <input type="range" id="input-range" />
+            </p>
+            <p>
+              <label for="input-color">Input Color</label><br />
+              <input type="color" id="input-color" />
+            </p>
+            <p>
+              <label for="input-file">Input File</label><br />
+              <input type="file" id="input-file" />
+            </p>
+          </fieldset>
+        </section>
         <section class="section">
           <h3 id="Elementsinline"><a href="#Elementsinline">Elements in-line</a></h3>
           <p>

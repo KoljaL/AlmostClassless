@@ -1,9 +1,9 @@
 .tabs {
     display: flex;
     flex-wrap: wrap;
-    background: linear-gradient(0deg, var(--cbg) 1rem, var(--clight) 0%);
-    border: var(--border);
-    border-radius: 5px;
+    /* background: linear-gradient(0deg, var(--secondary-transparent) 1rem, var(--secondary-transparent) 0%); */
+    /* border: 1px solid var(--secondary-transparent); */
+    /* border-radius: var(--border-radius); */
     padding-bottom: 0.5em;
 }
 .tabs label {
@@ -11,10 +11,11 @@
     display: block;
     cursor: pointer;
     padding: 0.5rem 0.8rem;
-    margin: 0.5rem 0 -1px;
-    border-radius: 5px 5px 0 0;
-    color: var(--clink);
-    background: var(--clight);
+    margin: 0.5rem 10px -1px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    color: var(--primary);
+    border: 1px solid transparent;
+    background: var(--secondary-bg);
 }
 .tabs label:first-of-type {
     margin-left: 1rem;
@@ -27,18 +28,24 @@
     z-index: 10;
     padding: 0 1rem;
     background: inherit;
-    border-top: 1px solid var(--secondary-transparent);
+    border: 1px solid var(--secondary-transparent);
+    border-radius: var(--border-radius);
+    /* border-top: 1px solid var(--secondary-transparent); */
 }
 .tabs input[type='radio']:not(:checked) + label:hover {
     filter: brightness(90%);
+    border: 1px solid var(--secondary-transparent);
+    border-bottom: 1px solid var(--secondary-bg);
+    /* border-bottom: 0px; */
 }
 .tabs input[type='radio'] {
     display: none;
 }
 .tabs input[type='radio']:checked + label {
-    border: var(--border);
-    border-bottom: 0px;
-    background: var(--cbg);
+    border: 1px solid var(--secondary-transparent);
+    border-bottom: 1px solid var(--secondary-bg);
+    background: 1px solid var(--secondary-bg);
+    color: var(--secondary);
     z-index: 11;
 }
 .tabs input[type='radio']:checked + label + .tab {
