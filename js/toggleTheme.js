@@ -65,9 +65,7 @@ style.innerHTML = /*CSS*/ `
 }
 `;
 
-document.getElementsByTagName('HEAD')[0].appendChild(style);
-
-document.querySelector('.theme-toggle').innerHTML = /*HTML*/ `
+const HTML = /*HTML*/ `
 <input type="checkbox" />
 <span class="theme-toggle-sr">Toggle theme</span>
 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="2em" height="2em" fill="var(--secondary-light)" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
@@ -89,13 +87,22 @@ document.querySelector('.theme-toggle').innerHTML = /*HTML*/ `
   </g>
 </svg>`;
 
-var toggle = document.querySelector('.theme-toggle');
-const faviconEl = document.querySelector('link[rel="icon"]');
+// document.onload = () => {
+//     const faviconEl = document.querySelector('link[rel="icon"]');
+//     document.getElementsByTagName('HEAD')[0].appendChild(style);
+//     document.querySelector('.theme-toggle').innerHTML = HTML;
+//     document.querySelector('.theme-toggle').addEventListener('change', () => {
+//         toggleTheme();
+//     });
+// };
+// var toggle = document.querySelector('.theme-toggle');
 // var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 // if (storedTheme)
 //   document.documentElement.setAttribute('data-theme', storedTheme)
 
-toggle.onchange = function () {
+// toggleTheme();
+
+function toggleTheme() {
     var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     var targetTheme = 'light';
     faviconEl.setAttribute('href', 'img/favicon-light.png');
@@ -105,4 +112,11 @@ toggle.onchange = function () {
     }
     document.documentElement.setAttribute('data-theme', targetTheme);
     // localStorage.setItem('theme', targetTheme);
-};
+}
+
+const faviconEl = document.querySelector('link[rel="icon"]');
+document.getElementsByTagName('HEAD')[0].appendChild(style);
+document.querySelector('.theme-toggle').innerHTML = HTML;
+document.querySelector('.theme-toggle').addEventListener('change', () => {
+    toggleTheme();
+});

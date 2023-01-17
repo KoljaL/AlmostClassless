@@ -1,77 +1,72 @@
 /************************************************************/
-/*                        Almond.CSS                        */
+/*                   AlmostClassless.css                    */
 /************************************************************/
-/** Author:  Alvaro Montoro                                **/
-/** Project: https://github.com/alvaromontoro/almond.css   **/
+/** Author:  Kolja                                         **/
+/** Project: https://github.com/KoljaL/AlmostClassless     **/
 /************************************************************/
 
-@media (prefers-color-scheme: light) {
-    :root,
-    [data-theme='light'] {
-        /* Colors */
-        --primaryH: 210;
-        --primaryS: 50%;
-        --primaryL: 40%;
-        --primary-bg: hsl(0, 0%, 100%);
-        --secondaryH: 0;
-        --secondaryS: 0%;
-        --secondaryL: 13%;
-        --secondary-bg: hsl(0, 0%, 100%);
-
-        /* Status */
-        --error: #d00;
-        --warning: #ec0;
-        --info: #369;
-        --correct: #080;
-        /* Colors */
-        --bs-blue: #0d6efd;
-        --bs-indigo: #6610f2;
-        --bs-purple: #6f42c1;
-        --bs-pink: #d63384;
-        --bs-red: #dc3545;
-        --bs-orange: #fd7e14;
-        --bs-yellow: #ffc107;
-        --bs-green: #198754;
-        --bs-teal: #20c997;
-        --bs-cyan: #0dcaf0;
-        --bs-black: #000;
-        --bs-white: #fff;
-        --bs-gray: #6c757d;
-    }
+/* @media (prefers-color-scheme: light) {} */
+:root {
+    /* Colors */
+    --primaryH: 210;
+    --primaryS: 50%;
+    --primaryL: 40%;
+    --primary-bg: hsl(0, 0%, 100%);
+    --secondaryH: 0;
+    --secondaryS: 0%;
+    --secondaryL: 13%;
+    --secondary-bg: hsl(0, 0%, 100%);
+    /* Status */
+    --error: #d00;
+    --warning: #ec0;
+    --info: #369;
+    --correct: #080;
+    /* Colors */
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-black: #000;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root[data-theme='dark'] {
-        /* Colors */
-        --primaryH: 210;
-        --primaryHI: 210deg;
-        --primaryS: 50%;
-        --primaryL: 40%;
-        --primary-bg: hsl(213, 16%, 24%);
-        --secondaryH: 0;
-        --secondaryS: 0%;
-        --secondaryL: 70%;
-        --secondary-bg: hsl(215, 18%, 13%);
-        /* Status */
-        --error: #d00;
-        --warning: #ec0;
-        --info: #369;
-        --correct: #080;
-        /* Colors */
-        --bs-blue: #0d6efd;
-        --bs-indigo: #6610f2;
-        --bs-purple: #6f42c1;
-        --bs-pink: #d63384;
-        --bs-red: #dc3545;
-        --bs-orange: #fd7e14;
-        --bs-yellow: #ffc107;
-        --bs-green: #198754;
-        --bs-teal: #20c997;
-        --bs-cyan: #0dcaf0;
-        --bs-black: #000;
-        --bs-white: #fff;
-        --bs-gray: #6c757d;
-    }
+:root[data-theme='dark'] {
+    /* Colors */
+    --primaryH: 210;
+    --primaryHI: 210deg;
+    --primaryS: 50%;
+    --primaryL: 40%;
+    --primary-bg: hsl(213, 16%, 24%);
+    --secondaryH: 0;
+    --secondaryS: 0%;
+    --secondaryL: 70%;
+    --secondary-bg: hsl(215, 18%, 13%);
+    /* Status */
+    --error: #d00;
+    --warning: #ec0;
+    --info: #369;
+    --correct: #080;
+    /* Colors */
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-black: #000;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
 }
 
 @font-face {
@@ -1000,7 +995,6 @@ video {
     max-width: 100%;
 }
 
-a:before,
 a[href^='mailto:']:before,
 a[href^='tel:']:before,
 a[href^='sms:']:before,

@@ -15,7 +15,7 @@ function markerTOC() {
         tocItems = tocItems.map(function (item) {
             var anchor = item.querySelector('a');
             var target = document.getElementById(anchor.getAttribute('href').slice(1));
-            console.log(target);
+            // console.log(target);
             return {
                 listItem: item,
                 anchor: anchor,
@@ -133,14 +133,14 @@ async function generateTOC() {
 var style = document.createElement('style');
 style.innerHTML = /*CSS*/ `
 .toc {
-  position: fixed;
-  left: 0rem;
-  top: 5em;
+//   position: fixed;
+//   left: 0rem;
+//   top: 5em;
   padding: .5em;
   width: calc(max-content + 1em);
   line-height: 1;
   border:1px solid var(--secondary);
-    border-radius: 5px;
+  border-radius: 5px;
   background-color: var(--secondary-bg);
 }
 
@@ -181,3 +181,4 @@ style.innerHTML = /*CSS*/ `
 }`;
 
 document.getElementsByTagName('HEAD')[0].appendChild(style);
+generateTOC();
