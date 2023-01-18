@@ -99,6 +99,12 @@ async function generateTOC() {
         var level = headings[i].localName.replace('h', '');
         var title = headings[i].innerHTML;
         headings[i].setAttribute('id', id);
+        var anchor = document.createElement('a');
+        anchor.setAttribute('href', '#' + id);
+        anchor.setAttribute('class', 'anchor');
+        anchor.title = 'permalink';
+        anchor.innerHTML = '';
+        headings[i].appendChild(anchor);
         var li = document.createElement('li');
         var a = document.createElement('a');
         a.setAttribute('href', '#' + id);

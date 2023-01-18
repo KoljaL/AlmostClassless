@@ -43,11 +43,11 @@
       display: flex;
       justify-content: space-between;
       align-items: end;
-      width: 100%;
+      /* width: 100%; */
       position: sticky;
       top: 0;
       margin: 0;
-      margin-inline: auto;
+      margin-inline: 1rem;
       padding: 0;
       background-color: var(--secondary-bg);
       border-bottom: 1px solid var(--secondary);
@@ -65,13 +65,13 @@
 
     main {
       /* background-color: yellow; */
-      margin-inline: auto;
+      margin-inline: 1rem;
 
     }
 
     footer {
       /* background-color: red; */
-      margin-inline: auto;
+      margin-inline: 1rem;
 
     }
 
@@ -81,11 +81,11 @@
       header,
       main,
       footer {
-        max-width: 920px;
+        max-width: 720px;
       }
 
       nav {
-        left: calc((100vw + 920px) / 2 + 1rem);
+        left: calc((100vw + 720px) / 2 + 1rem);
       }
     }
 
@@ -142,10 +142,50 @@
       border-bottom: 1px solid var(--primary-light);
       padding-right: 3rem;
       width: fit-content;
+      position: relative;
     }
 
     section>h2:first-child {
       margin-top: 2rem;
+    }
+
+    /*Handle anchors*/
+    h1 a.anchor,
+    h2 a.anchor,
+    h3 a.anchor,
+    h4 a.anchor,
+    h5 a.anchor,
+    h6 a.anchor {
+      opacity: 0;
+      position: relative;
+      bottom: 0rem;
+      left: 0rem;
+      transition: opacity 0.2s linear;
+      content: '';
+      display: inline-block;
+      width: 1.4rem;
+      height: 1.4rem;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='red'><path stroke-linecap='round' stroke-linejoin='round' d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244' /></svg>");
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(110%);
+      transition: filter var(--theme-toggle__classic--duration) ease;
+    }
+
+    h2:hover a.anchor,
+    h3:hover a.anchor,
+    h4:hover a.anchor,
+    h5:hover a.anchor,
+    h6:hover a.anchor {
+      opacity: 0.7;
+    }
+
+    h2:hover a.anchor:hover,
+    h3:hover a.anchor:hover,
+    h4:hover a.anchor:hover,
+    h5:hover a.anchor:hover,
+    h6:hover a.anchor:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -221,9 +261,9 @@
 
     </section>
     <section class="section">
-      <h2 class="forTOC"> Typography </h2>
+      <h2 class="forTOC">Typography</h2>
       <section class="section">
-        <h3 class="forTOC"> Block and Inline Elements </h3>
+        <h3 class="forTOC">Block and Inline Elements</h3>
         <p>
           Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
           velit lorem, feugiat congue lacus laoreet quis. Praesent maximus ex nec justo iaculis,

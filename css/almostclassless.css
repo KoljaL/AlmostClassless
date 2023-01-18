@@ -90,6 +90,7 @@
     --font-weight-bold: 400;
     --font-weight-normal: 200;
     --font-weight-thin: 100;
+    --font-size-link: var(--font-size-root);
     --line-height: 1.75rem;
     --heading-margin: 1.5rem 0 1rem;
     /* Inputs */
@@ -595,7 +596,6 @@ a:link,
 a:visited,
 a:active,
 a:focus {
-    --font-size-link: var(--font-size-root);
     /* --font-size-link: 2rem; */
     font-size: var(--font-size-link);
     color: var(--primary);

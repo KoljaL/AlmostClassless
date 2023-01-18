@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex</title>
+  <style>
+    html {
+      background-color: #aaa;
+    }
+
+    * {
+      box-sizing: border-box;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    body {
+      margin: 0 1rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+    }
+
+    header,
+    main,
+    footer {
+      width: 100%;
+    }
+
+
+
+
+    header {
+      position: sticky;
+      top: 0;
+    }
+
+    article {
+      /* margin-bottom: 3rem; */
+    }
+
+
+
+    nav {
+      width: 24rem;
+      position: fixed;
+      top: 10rem;
+      left: 90vw;
+      max-height: calc(100vh - 12rem);
+      overflow-y: auto;
+      transition: transform .5s ease-in-out;
+    }
+
+    nav.show {
+      transform: translateX(-25rem);
+    }
+
+
+    footer {
+      z-index: -1;
+      position: sticky;
+      bottom: 0;
+    }
+
+    @media (min-width: 74rem) {
+      body {}
+
+      header,
+      article,
+      footer {
+        width: 800px;
+        margin-inline: auto;
+      }
+
+      main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        position: relative;
+      }
+
+      nav {
+        /* position: fixed; */
+        left: calc((100vw + 800px) / 2 + 1rem);
+        transition: transform 0s ease-in-out;
+      }
+
+      nav.show {
+        transition: transform 0s ease-in-out;
+        transform: translateX(0);
+      }
+    }
+
+
+
+    header,
+    article,
+    nav,
+    footer {
+      box-sizing: border-box;
+      background-color: rgb(201, 201, 201);
+      border: 1px solid rgb(106, 106, 106);
+      border-radius: .25rem;
+      padding: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <header></header>
+  <main>
+    <article></article>
+    <nav></nav>
+  </main>
+  <footer></footer>
+
+
+
+  <script>
+    const header = document.querySelector('header');
+    const article = document.querySelector('article');
+    const nav = document.querySelector('nav');
+    const footer = document.querySelector('footer');
+
+    header.innerHTML = `<h1>Header</h1>`;
+    // fill article, nav and footer with lorem ipsum content
+    for (let i = 0; i < 100; i++) {
+      article.innerHTML += `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>`;
+    }
+
+    nav.innerHTML = `<h2>Nav</h2>`;
+    nav.innerHTML += `<ul>`;
+    for (let i = 0; i < 50; i++) {
+      nav.innerHTML += `<li>Lorem ipsum dolor  </li>`;
+    }
+    nav.innerHTML += `</ul>`;
+
+    for (let i = 0; i < 1; i++) {
+      footer.innerHTML += `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>`;
+    }
+
+    header.onclick = () => {
+      nav.classList.toggle('show');
+    }
+  </script>
+</body>
+
+</html>
