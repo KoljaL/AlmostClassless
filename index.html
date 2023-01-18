@@ -21,7 +21,7 @@
   <style>
     :root {
       --theme-toggle__classic--duration: 500ms;
-      --header-height: 5rem;
+      --header-height: 4rem;
       --nav-width: 20rem;
       --max-content-width: 1024px;
     }
@@ -48,7 +48,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
+      align-items: end;
       gap: 1rem;
       padding-inline: 1rem;
       background-color: var(--secondary-bg);
@@ -88,18 +88,24 @@
 
     .tocIcon {
       cursor: pointer;
-      border: 1px solid #000;
+      border: 1px solid red;
       border-radius: 5px;
       background-color: transparent;
       content: '';
       display: inline-block;
-      width: 2rem;
+      width: 2.5rem;
       height: 2rem;
-      background-image: url("data:image/svg+xml,<svg width='32' height='28' viewBox='-5 -5 50 36' fill='currentColor' xmlns='http://www.w3.org/2000/svg'> <path d='m 0 2 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 24 v 4 h -24 z m 0 10 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m -8 18 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m 0 -6 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 8 v 4 h -8 z' /></svg>");
+      background-image: url("data:image/svg+xml,<svg width='32' height='28' viewBox='-5 -5 50 36' fill='red' xmlns='http://www.w3.org/2000/svg'> <path d='m 0 2 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 24 v 4 h -24 z m 0 10 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m -8 18 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m 0 -6 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 8 v 4 h -8 z' /></svg>");
       background-size: cover;
       background-repeat: no-repeat;
       filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(110%);
       transition: filter var(--theme-toggle__classic--duration) ease;
+    }
+
+    button.tocIcon:not(:disabled):not([disabled]):hover {
+      border: 1px solid red;
+      background-color: transparent;
+      filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(150%);
     }
 
     @media (min-width: 1024px) {
@@ -149,8 +155,33 @@
       font-size: 2rem;
     }
 
+    header .icons {
+      display: flex;
+      align-items: flex-start;
+    }
 
+    header label {
+      /* position: relative;
+      top: 6px; */
+    }
 
+    header label svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    header label svg,
+    header label svg g {
+      stroke: var(--primary);
+      fill: var(--primary);
+      transition: all var(--theme-toggle__classic--duration) ease;
+    }
+
+    header label:hover svg,
+    header label:hover svg g {
+      stroke: var(--primary-light);
+      fill: var(--primary-light);
+    }
 
 
     .flex {
@@ -231,8 +262,10 @@
 
   <header>
     <h1 class="title"><a href="/">AlmostClassless.css</a></h1>
-    <label class="theme-toggle" title="Toggle theme"></label>
-    <button class="tocIcon" onclick="document.querySelector('nav').classList.toggle('show')"></button>
+    <span class="icons">
+      <label class="theme-toggle" title="Toggle theme"></label>
+      <button class="tocIcon" onclick="document.querySelector('nav').classList.toggle('show')"></button>
+    </span>
   </header>
 
 

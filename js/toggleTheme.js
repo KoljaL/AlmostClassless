@@ -68,7 +68,7 @@ style.innerHTML = /*CSS*/ `
 const HTML = /*HTML*/ `
 <input type="checkbox" />
 <span class="theme-toggle-sr">Toggle theme</span>
-<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="2em" height="2em" fill="var(--secondary-light)" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32px" height="32px" fill="var(--secondary-light)" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
   <clipPath id="theme-toggle__classic__cutout">
     <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
   </clipPath>
