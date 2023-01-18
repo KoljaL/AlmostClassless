@@ -5,7 +5,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flex</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path fill-rule='evenodd' d='M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 011.5 10.875v-3.75zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 01-1.875-1.875v-8.25zM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 013 18.375v-2.25z' clip-rule='evenodd' /></svg>"
+    type="image/svg+xml" />
+
+
+  <title>Flex Layout</title>
   <style>
     html {
       background-color: #aaa;
@@ -21,20 +26,24 @@
       display: none;
     }
 
+    :root {
+      --header-height: 5rem;
+      --nav-width: 20rem;
+      --max-content-width: 1024px;
+    }
 
     body {
       margin: 0 1rem;
-      display: flex;
+      /* display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 1rem;
-
+      gap: 1rem; */
     }
 
     header,
     main,
     footer {
-      width: 100%;
+      /* max-width: 100%; */
     }
 
 
@@ -43,7 +52,18 @@
     header {
       position: sticky;
       top: 0;
+      height: var(--header-height);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-inline: 1rem;
+      z-index: 5;
     }
+
+
+
 
     article {
       /* margin-bottom: 3rem; */
@@ -52,47 +72,69 @@
 
 
     nav {
-      width: 24rem;
+      width: var(--nav-width);
       position: fixed;
-      top: 10rem;
-      left: 90vw;
+      top: var(--header-height);
+      left: 100vw;
       max-height: calc(100vh - 12rem);
       overflow-y: auto;
       transition: transform .5s ease-in-out;
+      overscroll-behavior: contain;
     }
 
     nav.show {
-      transform: translateX(-25rem);
+      transform: translateX(calc(var(--nav-width) * -1 - 1rem));
     }
 
 
     footer {
-      z-index: -1;
       position: sticky;
       bottom: 0;
+      z-index: -1;
     }
 
-    @media (min-width: 74rem) {
-      body {}
+    .tocIcon {
+      cursor: pointer;
+      border: 1px solid #000;
+      border-radius: 5px;
+      background-color: transparent;
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      background-image: url("data:image/svg+xml,<svg width='32' height='28' viewBox='-5 -5 50 36' fill='currentColor' xmlns='http://www.w3.org/2000/svg'> <path d='m 0 2 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 24 v 4 h -24 z m 0 10 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m -8 18 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m 0 -6 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 8 v 4 h -8 z' /></svg>");
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(110%);
+      transition: filter var(--theme-toggle__classic--duration) ease;
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        margin-inline: max(calc((100vw - var(--nav-width) - var(--max-content-width)) / 2), 1rem);
+      }
 
       header,
       article,
       footer {
-        width: 800px;
-        margin-inline: auto;
+        max-width: var(--max-content-width);
+        width: calc(100vw - 2rem - var(--nav-width));
+        /* margin-inline: auto; */
       }
 
       main {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        gap: 1rem;
         position: relative;
       }
 
       nav {
-        /* position: fixed; */
-        left: calc((100vw + 800px) / 2 + 1rem);
+        position: sticky;
+        top: var(--header-height);
+        left: 0;
+        /* left: calc((100vw + 720px) / 2 + 1rem); */
+        /* left: calc((100vw + 720px) / 2 + 1rem); */
         transition: transform 0s ease-in-out;
       }
 
@@ -100,7 +142,30 @@
         transition: transform 0s ease-in-out;
         transform: translateX(0);
       }
+
+      .tocIcon {
+        display: none;
+      }
     }
+
+    /* @media (min-width: 1200px) {
+      body {}
+
+      header,
+      article,
+      footer {
+        max-width: 1080px;
+      }
+
+      nav {
+        left: calc((100vw + 1080px) / 2 + 1rem);
+        transition: transform 0s ease-in-out;
+      }
+    } */
+
+
+
+
 
 
 
@@ -113,13 +178,12 @@
       border: 1px solid rgb(106, 106, 106);
       border-radius: .25rem;
       padding: .5rem;
+      padding-inline: 1rem;
     }
   </style>
 </head>
 
 <body>
-
-
   <header></header>
   <main>
     <article></article>
@@ -135,8 +199,9 @@
     const nav = document.querySelector('nav');
     const footer = document.querySelector('footer');
 
-    header.innerHTML = `<h1>Header</h1>`;
-    // fill article, nav and footer with lorem ipsum content
+    header.innerHTML = `<h1>Header</h1><button class="tocIcon"></button>`;
+    const tocIcon = document.querySelector('.tocIcon');
+
     for (let i = 0; i < 100; i++) {
       article.innerHTML += `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>`;
     }
@@ -148,11 +213,11 @@
     }
     nav.innerHTML += `</ul>`;
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 3; i++) {
       footer.innerHTML += `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>`;
     }
 
-    header.onclick = () => {
+    tocIcon.onclick = () => {
       nav.classList.toggle('show');
     }
   </script>
