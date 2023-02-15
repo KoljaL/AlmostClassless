@@ -138,16 +138,12 @@ async function generateTOC() {
 // add CSS to header
 var style = document.createElement('style');
 style.innerHTML = /*CSS*/ `
-.toc {
-//   position: fixed;
-//   left: 0rem;
-//   top: 5em;
-  padding: .5em;
-  width: calc(max-content + 1em);
+.toc { 
+  padding: .5em; 
   line-height: 1;
-  border:1px solid var(--secondary);
+  border: 1px solid var(--color-link-highest);
   border-radius: 5px;
-  background-color: var(--secondary-bg);
+  background-color: var(--color-background-highest);
 }
 
 .toc ul {
@@ -160,16 +156,20 @@ style.innerHTML = /*CSS*/ `
 .toc ul ul {
   padding-left: 1em;
 }
-
+.toc li::before {
+    content: '';
+}
 .toc li a {
   display: inline-block;
-  color: var(--primary);
+  color: var(--color-link);
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.230, 1.000, 0.320, 1.000);
 }
-
+.toc li a:hover {
+    color: var(--color-link-high);
+}
 .toc li.visible>a {
-  color: var(--secondary);
+  color: var(--color-text);
   transform: translate(5px);
 }
 
@@ -184,6 +184,47 @@ style.innerHTML = /*CSS*/ `
 
 .toc-marker path {
   transition: all 0.3s ease;
+}
+
+/*Handle anchors*/
+h1 a.anchor,
+h2 a.anchor,
+h3 a.anchor,
+h4 a.anchor,
+h5 a.anchor,
+h6 a.anchor {
+    opacity: 0;
+    position: relative;
+    bottom: 0rem;
+    left: 0rem;
+    transition: opacity 0.2s linear;
+    content: '';
+    display: inline-block;
+    width: 1.4rem;
+    height: 1.4rem;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='red'><path stroke-linecap='round' stroke-linejoin='round' d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244' /></svg>");
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='red'><path stroke-linecap='round' stroke-linejoin='round' d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244' /></svg>");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--color-link);
+    transition: opacity var(--theme-toggle__classic--duration) ease;
+}
+
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    opacity: 0.7;
+}
+
+h2:hover a.anchor:hover,
+h3:hover a.anchor:hover,
+h4:hover a.anchor:hover,
+h5:hover a.anchor:hover,
+h6:hover a.anchor:hover {
+    opacity: 0.9;
 }`;
 
 document.getElementsByTagName('HEAD')[0].appendChild(style);

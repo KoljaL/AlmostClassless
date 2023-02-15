@@ -4,7 +4,17 @@ style.innerHTML = /*CSS*/ `
 .theme-toggle.theme-toggle--reversed .theme-toggle__classic {
   transform: scale(-1, 1);
 }
-
+svg.theme-toggle__classic,
+svg.theme-toggle__classic g{
+  fill: var(--color-link, currentColor);
+  stroke: var(--color-link, currentColor);
+  transition: fill var(--theme-toggle__classic--duration), stroke var(--theme-toggle__classic--duration);
+}
+svg.theme-toggle__classic:hover,
+svg.theme-toggle__classic:hover g{
+  fill: var(--color-link-high, currentColor);
+  stroke: var(--color-link-high, currentColor);
+}
 .theme-toggle__classic path {
   transition-timing-function: cubic-bezier(0, 0, 0.15, 1.25);
   transform-origin: center;
@@ -68,13 +78,13 @@ style.innerHTML = /*CSS*/ `
 const HTML = /*HTML*/ `
 <input type="checkbox" />
 <span class="theme-toggle-sr">Toggle theme</span>
-<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32px" height="32px" fill="var(--secondary-light)" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32px" height="32px" fill="red" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
   <clipPath id="theme-toggle__classic__cutout">
     <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
   </clipPath>
   <g clip-path="url(#theme-toggle__classic__cutout)">
     <circle cx="16" cy="16" r="9.34" />
-    <g stroke="var(--secondary-light)" stroke-width="1.5">
+    <g stroke="red" stroke-width="1.5">
       <path d="M16 5.5v-4" />
       <path d="M16 30.5v-4" />
       <path d="M1.5 16h4" />

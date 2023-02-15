@@ -15,244 +15,10 @@
     document.documentElement.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
   </script>
 
-  <link rel="stylesheet" href="./css/tabs.css" />
   <link rel="stylesheet" href="./css/almostclassless.css" />
-  <!-- <link rel="stylesheet" href="./css/bootstrap.css" /> -->
+  <link rel="stylesheet" href="./css/style.css" />
   <style>
-    :root {
-      --theme-toggle__classic--duration: 500ms;
-      --header-height: 4rem;
-      --nav-width: 20rem;
-      --max-content-width: 1024px;
-    }
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 5rem;
-    }
-
-    * {
-      transition: color var(--theme-toggle__classic--duration) ease, background-color var(--theme-toggle__classic--duration) ease;
-
-    }
-
-    body {
-      margin: 0 1rem;
-      padding: 0;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      height: var(--header-height);
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: end;
-      gap: 1rem;
-      padding-inline: 1rem;
-      background-color: var(--secondary-bg);
-      border-bottom: 1px solid var(--secondary);
-      z-index: 5;
-    }
-
-    article {
-      overflow-y: scroll;
-      height: 100%;
-      background-color: var(--secondary-bg);
-
-    }
-
-    nav {
-      width: calc(var(--nav-width) - 1rem);
-      position: fixed;
-      top: var(--header-height);
-      left: 100vw;
-      margin-left: 1rem;
-      max-height: calc(100vh - 15rem);
-      overflow-y: auto;
-      transition: transform .5s ease-in-out;
-      overscroll-behavior: contain;
-      z-index: 100;
-    }
-
-    nav.show {
-      transform: translateX(calc(var(--nav-width) * -1 - 1rem));
-    }
-
-    footer {
-      position: sticky;
-      bottom: 0;
-      z-index: -1;
-    }
-
-    .tocIcon {
-      cursor: pointer;
-      border: 1px solid red;
-      border-radius: 5px;
-      background-color: transparent;
-      content: '';
-      display: inline-block;
-      width: 2.5rem;
-      height: 2rem;
-      background-image: url("data:image/svg+xml,<svg width='32' height='28' viewBox='-5 -5 50 36' fill='red' xmlns='http://www.w3.org/2000/svg'> <path d='m 0 2 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 24 v 4 h -24 z m 0 10 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m -8 18 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 16 v 4 h -16 z m 0 -6 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0 m 8 -2 h 8 v 4 h -8 z' /></svg>");
-      background-size: cover;
-      background-repeat: no-repeat;
-      filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(110%);
-      transition: filter var(--theme-toggle__classic--duration) ease;
-    }
-
-    button.tocIcon:not(:disabled):not([disabled]):hover {
-      border: 1px solid red;
-      background-color: transparent;
-      filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(150%);
-    }
-
-    @media (min-width: 1024px) {
-      body {
-        margin-inline: max(calc((100vw - var(--nav-width) - var(--max-content-width)) / 2), 1rem);
-      }
-
-      header,
-      article,
-      footer {
-        width: calc(100vw - 2rem - var(--nav-width));
-        max-width: var(--max-content-width);
-      }
-
-      main {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        position: relative;
-      }
-
-      nav {
-        position: sticky;
-        top: var(--header-height);
-        left: 0;
-        transition: transform 0s ease-in-out;
-      }
-
-      nav.show {
-        transform: translateX(0);
-      }
-
-      .tocIcon {
-        display: none;
-      }
-    }
-
-
-
-
-
-    header h1 {
-      margin: .75rem 0 0;
-    }
-
-    header h1.title a {
-      font-size: 2rem;
-    }
-
-    header .icons {
-      display: flex;
-      align-items: flex-start;
-    }
-
-    header label {
-      /* position: relative;
-      top: 6px; */
-    }
-
-    header label svg {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-
-    header label svg,
-    header label svg g {
-      stroke: var(--primary);
-      fill: var(--primary);
-      transition: all var(--theme-toggle__classic--duration) ease;
-    }
-
-    header label:hover svg,
-    header label:hover svg g {
-      stroke: var(--primary-light);
-      fill: var(--primary-light);
-    }
-
-
-    .flex {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .flex>* {
-      margin-right: 1rem;
-    }
-
-    .section {
-      margin-bottom: 5rem;
-
-    }
-
-    section>h1,
-    section>h2,
-    section>h3,
-    section>h4,
-    section>h5,
-    section>h6 {
-      margin-top: 4rem;
-      border-bottom: 1px solid var(--primary-light);
-      padding-right: 3rem;
-      width: fit-content;
-      position: relative;
-    }
-
-    section>h2:first-child {
-      margin-top: 2rem;
-    }
-
-    /*Handle anchors*/
-    h1 a.anchor,
-    h2 a.anchor,
-    h3 a.anchor,
-    h4 a.anchor,
-    h5 a.anchor,
-    h6 a.anchor {
-      opacity: 0;
-      position: relative;
-      bottom: 0rem;
-      left: 0rem;
-      transition: opacity 0.2s linear;
-      content: '';
-      display: inline-block;
-      width: 1.4rem;
-      height: 1.4rem;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='red'><path stroke-linecap='round' stroke-linejoin='round' d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244' /></svg>");
-      background-size: cover;
-      background-repeat: no-repeat;
-      filter: hue-rotate(var(--primaryHI)) saturate(40%) brightness(110%);
-      transition: filter var(--theme-toggle__classic--duration) ease;
-    }
-
-    h2:hover a.anchor,
-    h3:hover a.anchor,
-    h4:hover a.anchor,
-    h5:hover a.anchor,
-    h6:hover a.anchor {
-      opacity: 0.7;
-    }
-
-    h2:hover a.anchor:hover,
-    h3:hover a.anchor:hover,
-    h4:hover a.anchor:hover,
-    h5:hover a.anchor:hover,
-    h6:hover a.anchor:hover {
-      opacity: 0.9;
-    }
   </style>
 </head>
 
@@ -260,616 +26,908 @@
 
 
 
-  <header>
-    <h1 class="title"><a href="/">AlmostClassless.css</a></h1>
-    <span class="icons">
+
+  <header class="page__header">
+    <div class="header__left">
+
+      <h1 class="header__title"><a href="/">AlmostClassless.css</a></h1>
+      <p class="header__subtitle">This is a test page filled with common HTML elements to be used to provide visual feedback whilst building CSS systems and frameworks.</p>
+    </div>
+    <div class="header__right">
       <label class="theme-toggle" title="Toggle theme"></label>
       <button class="tocIcon" onclick="document.querySelector('nav').classList.toggle('show')"></button>
-    </span>
+    </div>
   </header>
 
+  <nav class="toc">
+    <svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <path stroke="var(--color-link)" stroke-width="2" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" />
+    </svg>
+  </nav>
 
-  <main>
-    <article>
+  <main class="page__main">
 
-      <section>
-        <h2 class="forTOC">almost....</h2>
-        <p>AlmostClassless.css is a collection of CSS styles to make simple websites look nicer and better.</p>
-        <p>
-          On this demo page, we will go through the main components from this lightweight CSS library.
-          Then we will also add the extended classed styles.
-        </p>
-      </section>
-      <section>
-        <h2 class="forTOC">Colors</h2>
-        <h3 class="forTOC">Primary</h3>
-        <p class="primary-darker">
-          <b>Primary Darker</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="primary-dark">
-          <b>Primary Dark</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="primary">
-          <b>Primary</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="primary-light">
-          <b>Primary Light</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="primary-lighter">
-          <b>Primary Lighter</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
+    <section class="main__section">
+      <header>
+        <h2 id="colors" class="forTOC">Colors</h2>
+        <p>Text-, Link- and Backgroundcolor from lowest to highest </p>
+      </header>
 
-        <h3 class="forTOC">Secondary</h3>
-        <p class="secondary-darker">
-          <b>Secondary Darker</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="secondary-dark">
-          <b>Secondary Dark</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="secondary">
-          <b>Secondary</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="secondary-light">
-          <b>Secondary Light</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
-        <p class="secondary-lighter">
-          <b>Secondary Lighter</b><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-          velit lorem, feugiat congue lacus laoreet quis.
-        </p>
+      <div class="section__color-flex">
+        <div class="background-lowest">
+          <h5>Background-lowest</h5>
+          <div class="text-transparent">Text-transparent</div>
+          <div class="text-lowest">Text-lowest</div>
+          <div class="text-low">Text-low</div>
+          <div class="text">Text</div>
+          <div class="text-high">Text-high</div>
+          <div class="text-highest">Text-highest</div>
+          <div class="link-transparent">Link-transparent</div>
+          <div class="link-lowest">Link-lowest</div>
+          <div class="link-low">Link-low</div>
+          <div class="link">Link</div>
+          <div class="link-high">Link-high</div>
+          <div class="link-highest">Link-highest</div>
+        </div>
 
-      </section>
-      <section class="section">
-        <h2 class="forTOC">Typography</h2>
-        <section class="section">
-          <h3 class="forTOC">Block and Inline Elements</h3>
-          <p>
-            Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-            velit lorem, feugiat congue lacus laoreet quis. Praesent maximus ex nec justo iaculis,
-            in euismod eros dictum. Cras ac lorem sit amet purus malesuada blandit. Mauris gravida
-            augue non urna sodales porttitor. Etiam ullamcorper luctus ullamcorper. In lobortis
-            consequat ante.
-          </p>
-          <p>
-            This is a paragraph with multiple inline elements. The <span>span</span> is not styled,
-            but you may have <a href="#">some links with the a tag</a>; also you can
-            <em>add emphasis with em</em> or <i>also with i</i>; Highlight the words by
-            <strong>using strong</strong> or just <b>bring attention with the b tag</b>; of course,
-            you can <s>strikethrough text</s> (or the deprecated tag in HTML5
-            <strike>strike</strike>), and the <code>&lt;u&gt;</code> tag now stands for
-            <u>unarticullated-text</u> instead of underline; abbreviations are great, as you may have
-            <abbr title="too many abbreviations">TMA</abbr>; <code>inline code</code> is cool too;
-            You can also add line breaks with br...<br />
-            <mark>Highlight text with mark</mark> or display a <kbd>Key</kbd>. You can also have
-            <q>inline quotes with q</q>, or <samp>results from an operation with samp</samp> or a
-            <var>variable</var>, or an <output>output</output>, also there's <small>small text</small>, text
-            with<sup>superscript</sup>, or text with<sub>subscript</sub>... not to mention you can
-            have time too. For example, this paragraph was originally written in <time>2020</time>.
-            Not to forget about <dfn>definitions</dfn>! Also <del>del was deleted</del> and
-            <ins>ins was inserted</ins>.
-          </p>
-          <blockquote>
-            <p>
-              Integer viverra elit sed tincidunt dignissim. Donec luctus malesuada posuere. Sed
-              pulvinar pulvinar augue. Aenean id ligula justo. Curabitur egestas sed augue vel
-              vulputate. Ut tempor sem sit amet diam molestie, id tincidunt lorem vulputate. Duis eu
-              consectetur turpis, sit amet lobortis magna.
-            </p>
-            <footer>—Cicero, <cite>De finibus bonorum et malorum</cite></footer>
-          </blockquote>
-          <address>
-            <a href="https://alvaromontoro.com">Alvaro Montoro</a> wrote this document.
-          </address>
-          <h4 class="forTOC"> Fancy links</h4>
-          <div class="module">ww</div>
-          <a class="module">aa</a>
+        <div class="background-low">
+          <h5>Background-low</h5>
+          <div class="text-transparent">Text-transparent</div>
+          <div class="text-lowest">Text-lowest</div>
+          <div class="text-low">Text-low</div>
+          <div class="text">Text</div>
+          <div class="text-high">Text-high</div>
+          <div class="text-highest">Text-highest</div>
+          <div class="link-transparent">Link-transparent</div>
+          <div class="link-lowest">Link-lowest</div>
+          <div class="link-low">Link-low</div>
+          <div class="link">Link</div>
+          <div class="link-high">Link-high</div>
+          <div class="link-highest">Link-highest</div>
+        </div>
 
-          <p>Some links may be special depending on their href or their rel:</p>
-          <p>
-            <a href="mailto:alvaromontoro@gmail.com">Link to alvaromontoro@gmail.com</a><br />
-            <a href="tel:fakenumber">Link to a number (call)</a><br />
-            <a href="sms:fakenumber">Link to a number (message)</a><br />
-            <a href="file:index.html">Link to a file</a><br />
-            <a href="file:index.html" download>Link to download a file</a><br />
-            <a rel="external" href="#">Link to an external site</a><br />
-            <a rel="bookmark" href="#">Link to bookmark</a>
-          </p>
-          <p>
-            Those special links will work inline too!
-            <a href="mailto:alvaromontoro@gmail.com">Email me!</a> or see an
-            <a rel="external" href="https://alvaromontoro.com">Link to an external site</a>.
-          </p>
-        </section>
-        <section>
-          <h3 class="forTOC">Headings</h3>
-          <h1>Heading Level 1</h1>
-          <h2>Heading Level 2</h2>
-          <h3>Heading Level 3</h3>
-          <h4>Heading Level 4</h4>
-          <h5>Heading Level 5</h5>
-          <h6>Heading Level 6</h6>
-          <hgroup>
-            <h2>Heading level 2 within hgroup</h2>
-            <h3>Heading level 3 within hgroup</h3>
-          </hgroup>
-          <hgroup id="document-title">
-            <h1>Heading Group</h1>
-            <p>with <code>&lt;p&gt;</code> as subtitle</p>
-          </hgroup>
-        </section>
-      </section>
+        <div class="background">
+          <h5>Background</h5>
+          <div class="text-transparent">Text-transparent</div>
+          <div class="text-lowest">Text-lowest</div>
+          <div class="text-low">Text-low</div>
+          <div class="text">Text</div>
+          <div class="text-high">Text-high</div>
+          <div class="text-highest">Text-highest</div>
+          <div class="link-transparent">Link-transparent</div>
+          <div class="link-lowest">Link-lowest</div>
+          <div class="link-low">Link-low</div>
+          <div class="link">Link</div>
+          <div class="link-high">Link-high</div>
+          <div class="link-highest">Link-highest</div>
+        </div>
 
-      <section class="section">
-        <h2 class="forTOC">Lists</h2>
-        <ul>
-          <li>Unordered list item 1</li>
-          <li>
-            Unordered list item 2
-            <ul>
-              <li>Unordered list sub-item 1</li>
-              <li>Unordered list sub-item 2</li>
-            </ul>
-          </li>
-          <li>Unordered list item 3</li>
-          <li>Unordered list item 4</li>
-        </ul>
-        <ol>
-          <li>Ordered list item 1</li>
-          <li>
-            Ordered list item 2
-            <ol>
-              <li>Ordered list sub-item 1</li>
-              <li>Ordered list sub-item 2</li>
-            </ol>
-          </li>
-          <li>Ordered list item 3</li>
-          <li>Ordered list item 4</li>
-        </ol>
-      </section>
+        <div class="background-high">
+          <h5>Background-high</h5>
+          <div class="text-transparent">Text-transparent</div>
+          <div class="text-lowest">Text-lowest</div>
+          <div class="text-low">Text-low</div>
+          <div class="text">Text</div>
+          <div class="text-high">Text-high</div>
+          <div class="text-highest">Text-highest</div>
+          <div class="link-transparent">Link-transparent</div>
+          <div class="link-lowest">Link-lowest</div>
+          <div class="link-low">Link-low</div>
+          <div class="link">Link</div>
+          <div class="link-high">Link-high</div>
+          <div class="link-highest">Link-highest</div>
+        </div>
 
-      <section class="section">
-        <h2 class="forTOC">Form &amp; Controls</h2>
-        <section class="section">
-          <h3 class="forTOC">Inputs &amp; Textareas</h3>
-          <form class="flex">
-            <p>
-              <label for="input">Input without type (defaults to text)</label><br />
-              <input id="input" placeholder="Input" />
-            </p>
-            <p>
-              <label for="input-text">Input with type="text"</label><br />
-              <input type="text" id="input-text" />
-            </p>
-            <p>
-              <label for="input-date">Input with type="date"</label><br />
-              <input type="date" id="input-date" />
-            </p>
-            <p>
-              <label for="input-datetime-local">Input with type="datetime-local"</label><br />
-              <input type="datetime-local" id="input-datetime-local" />
-            </p>
-            <p>
-              <label for="input-email">Input with type="email"</label><br />
-              <input type="email" id="input-email" />
-            </p>
-            <p>
-              <span>Input with type="hidden" ;)</span><br />
-              <input id="hidden" type="hidden" />
-            </p>
-            <p>
-              <label for="input-month">Input with type="month"</label><br />
-              <input type="month" id="input-month" />
-            </p>
-            <p>
-              <label for="input-number">Input with type="number"</label><br />
-              <input type="number" id="input-number" />
-            </p>
-            <p>
-              <label for="input-password">Input with type="password"</label><br />
-              <input type="password" id="input-password" />
-            </p>
-            <p>
-              <label for="input-search">Input with type="search"</label><br />
-              <input type="search" id="input-search" />
-            </p>
-            <p>
-              <label for="input-tel">Input with type="tel"</label><br />
-              <input type="tel" id="input-tel" />
-            </p>
-            <p>
-              <label for="input-time">Input with type="time"</label><br />
-              <input type="time" id="input-time" />
-            </p>
-            <p>
-              <label for="input-url">Input with type="url"</label><br />
-              <input type="url" id="input-url" />
-            </p>
-            <p>
-              <label for="input-week">Input with type="week"</label><br />
-              <input type="week" id="input-week" />
-            </p>
-            <p>
-              <label for="textarea">Textarea</label><br />
-              <textarea id="textarea"></textarea>
-            </p>
-          </form>
-          <h4 class="forTOC">Input States</h4>
 
-          <form class="flex">
-            <p>
-              <label for="input-text-standard">Standard</label><br />
-              <input type="text" id="input-text-standard" />
-            </p>
-            <p>
-              <label for="input-text-disabled">Disabled</label><br />
-              <input type="text" id="input-text-disabled" disabled />
-            </p>
-            <p>
-              <label for="input-text-invalid">Invalid</label><br />
-              <input type="text" id="input-text-invalid" required value="" />
-            </p>
-            <p>
-              <label for="input-text-readonly">Read Only</label><br />
-              <input type="text" id="input-text-readonly" readonly />
-            </p>
-          </form>
-          <h4 class="forTOC">Inputs with special attributes</h4>
+        <div class="background-highest">
+          <h5>Background-highest</h5>
+          <div class="text-transparent">Text-transparent</div>
+          <div class="text-lowest">Text-lowest</div>
+          <div class="text-low">Text-low</div>
+          <div class="text">Text</div>
+          <div class="text-high">Text-high</div>
+          <div class="text-highest">Text-highest</div>
+          <div class="link-transparent">Link-transparent</div>
+          <div class="link-lowest">Link-lowest</div>
+          <div class="link-low">Link-low</div>
+          <div class="link">Link</div>
+          <div class="link-high">Link-high</div>
+          <div class="link-highest">Link-highest</div>
+        </div>
 
-          <form>
+      </div>
+
+
+    </section>
+
+
+
+    <section class="main__section">
+      <header>
+        <h2 id="text" class="forTOC">Text</h2>
+        <p>Headings, Paragraphs, Blockquote, Cite, Bold, Underline, Italic, Link, Image. </p>
+      </header>
+
+      <h1>Archaeopteryx</h1>
+      <p>Archaeopteryx, sometimes referred to by its German name, "Urvogel" (lit. Primeval Bird), is a genus of bird-like dinosaurs. The name derives from the ancient Greek ἀρχαῖος (archaīos), meaning "ancient", and πτέρυξ (ptéryx), meaning "feather" or "wing". Between the late 19th century and the early 21st century, Archaeopteryx was generally accepted by palaeontologists and popular reference books as the oldest known bird (member of the group Avialae). Older potential avialans have since been identified,
+        including Anchiornis, Xiaotingia, and Aurornis.</p>
+
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Archaeopteryx_NT.jpg/440px-Archaeopteryx_NT.jpg" alt="Artist's restoration illustrating one interpretation of Carney's study">
+        <figcaption>
+          Artist's restoration illustrating one interpretation of Carney's study
+          <br>
+          <small> Image from <a href="https://wikipedia.org" target="_blank">wikipedia.org</a></small>
+        </figcaption>
+      </figure>
+
+      <p>Archaeopteryx lived in the Late Jurassic around 150 million years ago, in what is now southern Germany, during a time when Europe was an archipelago of islands in a shallow warm tropical sea, much closer to the equator than it is now. Similar in size to a Eurasian magpie, with the largest individuals possibly attaining the size of a raven, the largest species of Archaeopteryx could grow to about 0.5 m (1 ft 8 in) in length. Despite their small size, broad wings, and inferred ability to fly or glide
+        Archaeopteryx had more in common with other small Mesozoic dinosaurs than with modern birds. In particular, they shared the following features with the dromaeosaurids and troodontids: jaws with sharp teeth, three fingers with claws, a long bony tail, hyperextensible second toes ("killing claw"), feathers (which also suggest warm-bloodedness), and various features of the skeleton.</p>
+
+      <h2>History of discovery</h2>
+      <p>The initial discovery, a single feather, was unearthed in 1860 or 1861 and described in 1861 by Hermann von Meyer. It is currently located at the Natural History Museum of Berlin. Though it was the initial holotype, there were indications that it might not have been from the same animal as the body fossils. In 2019 it was reported that laser imaging had revealed the structure of the quill (which had not been visible since some time after the feather was described), and that the feather was inconsistent
+        with the morphology of all other Archaeopteryx feathers known, leading to the conclusion that it originated from another dinosaur. This conclusion was challenged in 2020 as being unlikely; the feather was identified on the basis of morphology as most likely having been an upper major primary covert feather.</p>
+
+      <h3>Authenticity</h3>
+      <p>Beginning in 1985, an amateur group including astronomer Fred Hoyle and physicist Lee Spetner, published a series of papers claiming that the feathers on the Berlin and London specimens of Archaeopteryx were forged. Their claims were repudiated by Alan J. Charig and others at the Natural History Museum in London. Most of their supposed evidence for a forgery was based on unfamiliarity with the processes of lithification; for example, they proposed that, based on the difference in texture associated with
+        the feathers, feather impressions were applied to a thin layer of cement, without realizing that feathers themselves would have caused a textural difference. They also misinterpreted the fossils, claiming that the tail was forged as one large feather, when visibly this is not the case. In addition, they claimed that the other specimens of Archaeopteryx known at the time did not have feathers, which is incorrect; the Maxberg and Eichstätt specimens have obvious feathers.</p>
+
+      <h4>Description</h4>
+      <p>Most of the specimens of Archaeopteryx that have been discovered come from the Solnhofen limestone in Bavaria, southern Germany, which is a Lagerstätte, a rare and remarkable geological formation known for its superbly detailed fossils laid down during the early Tithonian stage of the Jurassic period, approximately 150.8–148.5 million years ago.</p>
+
+      <h5>Colouration</h5>
+      <p>In 2011, graduate student Ryan Carney and colleagues performed the first colour study on an Archaeopteryx specimen. Using scanning electron microscopy technology and energy-dispersive X-ray analysis, the team was able to detect the structure of melanosomes in the isolated feather specimen described in 1861. The resultant measurements were then compared to those of 87 modern bird species, and the original colour was calculated with a 95% likelihood to be black. The feather was determined to be black
+        throughout, with heavier pigmentation in the distal tip. The feather studied was most probably a dorsal covert, which would have partly covered the primary feathers on the wings.</p>
+
+      <h6>Phylogenetic position</h6>
+      <p>Modern palaeontology has often classified Archaeopteryx as the most primitive bird. However, it is not thought to be a true ancestor of modern birds, but rather a close relative of that ancestor. Nonetheless, Archaeopteryx was often used as a model of the true ancestral bird. Several authors have done so. Lowe (1935) and Thulborn (1984) questioned whether Archaeopteryx truly was the first bird. They suggested that Archaeopteryx was a dinosaur that was no more closely related to birds than were other
+        dinosaur groups. Kurzanov (1987) suggested that Avimimus was more likely to be the ancestor of all birds than Archaeopteryx. Barsbold (1983) and Zweers and Van den Berge (1997) noted that many maniraptoran lineages are extremely birdlike, and they suggested that different groups of birds may have descended from different dinosaur ancestors.</p>
+      </p>
+
+
+      <header>
+        <h3 id="blockquotes">Blockquotes</h3>
+        <p>A Bblockquote specifies a text that is quoted from another source.</p>
+      </header>
+
+      <blockquote>
+        <p>A block quotation (also known as a long quotation or extract) is a quotation in a written document, that is set off from the main as a paragraph, or block of text.</p>
+        <p>It is typically distinguished visually using indentation and a different typeface or smaller size quotation. It may or may not include a citation, usually placed at the bottom.</p>
+        <cite><a href="#!">Said no one, ever.</a></cite>
+      </blockquote>
+
+      <blockquote cite="http://www.worldwildlife.org/who/index.html">
+        For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+      </blockquote>
+
+      <blockquote class="red" cite="http://www.worldwildlife.org/who/index.html">
+        For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+      </blockquote>
+
+
+
+      <header>
+        <h3 id="addresss">Address</h3>
+        <p>Address</p>
+      </header>
+
+      <address>
+        Albert Einstein<br>
+        <a href="mailto:albert@einsten.org">Albert@Einstein.org</a><br>
+        <a class="inline-icon website" href="#">Einstein.com</a><br>
+        <a href="tel:albert@einsten.org">0123 4567 8910</a><br>
+        <span class="inline-icon map">Box 564, Disneyland</span><br>
+      </address>
+
+
+
+
+      <section id="inlineElements" class="main__section ">
+        <header>
+          <h2 class="forTOC">Inline Elements</h2>
+          <p>Inline elements display in a line. They do not force the text after them to a new line.</p>
+        </header>
+
+        <div class="flex-row">
+          <div class="inline-elements__flex">
             <p>
-              <label for="input-with-size-5" style="width:150px;display:inline-block;">Input with size=5</label>
-              <input id="input-with-size-5" type="text" size="5">
+              <code>&lt;a&gt;</code>
+              <a href="#">a Link</a>
             </p>
             <p>
-              <label for="input-with-size-20" style="width:150px;display:inline-block;">Input with size=20</label>
-              <input id="input-with-size-20" type="text" size="20">
-            </p>
-          </form>
-        </section>
-        <section class="section">
-          <h3 class="forTOC">Buttons</h3>
-          <div>
-            <p>
-              <span>Button with button tag</span><br />
-              <button>Button</button>
+              <code>&lt;abbr&gt;</code>
+              <abbr title="Abbreviation">Abbr.</abbr>
             </p>
             <p>
-              <span>Disabled button</span><br />
-              <button disabled>Button</button>
+              <code>&lt;strong&gt;</code>
+              <strong>Bold</strong>
             </p>
             <p>
-              <label for="input-button">Input type="button"</label><br />
-              <input type="button" id="input-button" value="Input with type button" />
+              <code>&lt;b&gt;</code>
+              <b>Bold</b>
             </p>
             <p>
-              <label for="input-reset">Input type="reset"</label><br />
-              <input type="reset" id="input-reset" value="Reset" />
+              <code>&lt;i&gt;</code>
+              <i>Italic</i>
             </p>
             <p>
-              <label for="input-reset-disabled">Input type="reset"</label><br />
-              <input type="reset" id="input-reset-disabled" value="Reset" disabled />
+              <code>&lt;em&gt;</code>
+              <em>em</em>
             </p>
             <p>
-              <label for="input-submit">Input type="submit"</label><br />
-              <input type="submit" id="input-submit" value="Submit" />
+              <code>&lt;del&gt;</code>
+              <del>Deleted</del>
             </p>
             <p>
-              <label for="input-image">Input type="image"</label><br />
-              <input type="image" id="input-image" alt="Input" src="https://raw.githubusercontent.com/alvaromontoro/almond.css/master/demo/static/input-image.png" />
+              <code>&lt;ins&gt;</code>
+              <ins>Inserted</ins>
+            </p>
+            <p>
+              <code>&lt;kbd&gt;</code>
+              <span><kbd>Ctrl</kbd> + <kbd>S</kbd></span>
             </p>
           </div>
-        </section>
-        <section class="section">
-          <h3 class="forTOC">Radios &amp; Checkboxes</h3>
-          <p>
-            <input type="radio" name="radio" id="radio-1" checked />
-            <label for="radio-1">Radio 1</label><br />
-            <input type="radio" name="radio" id="radio-2" />
-            <label for="radio-2">Radio 2</label><br />
-            <input type="radio" name="radio" id="radio-3" />
-            <label for="radio-3">Radio 3</label><br />
-            <input type="radio" name="radio" id="radio-4" disabled />
-            <label for="radio-4">Radio 4 (disabled)</label>
-          </p>
-          <p>
-            <input type="checkbox" id="checkbox-1" /> <label for="checkbox-1">Checkbox</label><br />
-            <input type="checkbox" id="checkbox-2" checked />
-            <label for="checkbox-2">Checked Checkbox</label><br />
-            <input type="checkbox" id="checkbox-3" disabled />
-            <label for="checkbox-3">Disabled Checkbox</label>
-          </p>
-        </section>
-        <section class="section">
-          <h3 class="forTOC">Other Form Controls</h3>
-          <fieldset>
-            <legend>Fieldset Legend</legend>
+          <div class="inline-elements__flex">
             <p>
-              <label for="select">Select</label><br />
-              <select id="select">
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-                <optgroup label="Subgroup">
-                  <option value="4">Option 4</option>
-                  <option value="5">Option 5</option>
-                </optgroup>
-              </select>
+              <code>&lt;mark&gt;</code>
+              <span><mark>Highlighted</mark></span>
             </p>
             <p>
-              <label for="selectmultiple">Multiselect</label><br />
-              <select id="selectmultiple" multiple>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-                <option value="4">Option 4</option>
-                <option value="5">Option 5</option>
-                <option value="6">Option 6</option>
-                <optgroup label="Subgroup">
-                  <option value="7">Option 7</option>
-                  <option value="8">Option 8</option>
-                </optgroup>
-              </select>
+              <code>&lt;s&gt;</code>
+              <s>Strikethrough</s>
             </p>
             <p>
-              <label for="input-range">Input Range</label><br />
-              <input type="range" id="input-range" />
+              <code>&lt;small&gt;</code>
+              <small>Small</small>
             </p>
             <p>
-              <label for="input-color">Input Color</label><br />
-              <input type="color" id="input-color" />
+              <code>&lt;sub&gt;</code>
+              <span>Text <sub>Sub</sub></span>
             </p>
             <p>
-              <label for="input-file">Input File</label><br />
-              <input type="file" id="input-file" />
+              <code>&lt;sup&gt;</code>
+              <span>Text <sup>Sup</sup></span>
             </p>
-          </fieldset>
-        </section>
-        <section class="section">
-          <h3 id="Elementsinline"><a href="#Elementsinline">Elements in-line</a></h3>
-          <p>
-            <input type="text" aria-label="Test input" />
-            <input type="button" value="Button" aria-label="Test button" />
-          </p>
-
-          <p>
-            <input type="text" aria-label="Test input" />
-            <select>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-              <option value="4">Option 4</option>
-            </select>
-            <input type="button" value="Button" aria-label="Test button" />
-          </p>
-
-          <p>
-            <select>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-              <option value="4">Option 4</option>
-            </select>
-            <input type="button" value="Button" aria-label="Test button" />
-          </p>
-        </section>
-      </section>
-
-      <section class="section">
-        <h2 class="forTOC">Other HTML Elements</h2>
-
-        <section class="section">
-          <h3 class="forTOC">Table</h3>
-          <table>
-            <caption>
-              Demo Table
-            </caption>
-            <thead>
-              <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Row 1 Value 1</td>
-                <td>Row 1 Value 2</td>
-                <td>Row 1 Value 3</td>
-                <td>Row 1 Value 4</td>
-              </tr>
-              <tr>
-                <td>Row 2 Value 1</td>
-                <td>Row 2 Value 2</td>
-                <td>Row 2 Value 3</td>
-                <td>Row 2 Value 4</td>
-              </tr>
-              <tr>
-                <td>Row 3 Value 1</td>
-                <td>Row 3 Value 2</td>
-                <td>Row 3 Value 3</td>
-                <td>Row 3 Value 4</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Total 1</th>
-                <th>Total 2</th>
-                <th>Total 3</th>
-                <th>Total 4</th>
-              </tr>
-            </tfoot>
-          </table>
-        </section>
-        <section class="section">
-          <h3 class="forTOC">Horizontal Rule</h3>
-          <hr />
-        </section>
-        <section class="section">
-          <h3 class="forTOC">Images</h3>
-          <h4 class="forTOC">Img</h4>
-          <img src="https://raw.githubusercontent.com/alvaromontoro/almond.css/master/demo/static/person.png" alt="Cartoon" />
-          <h4 class="forTOC">Figure &amp; Figcaption</h4>
-          <figure>
-            <img src="https://raw.githubusercontent.com/alvaromontoro/almond.css/master/demo/static/person.png" alt="Cartoon" />
-            <figcaption>Picture of a person</figcaption>
-          </figure>
-        </section>
-        <section>
-          <h3 class="forTOC">Details</h3>
-          <details>
-            <summary>Details/Summary example</summary>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat velit
-              lorem, feugiat congue lacus laoreet quis. Praesent maximus ex nec justo iaculis, in
-              euismod eros dictum. Cras ac lorem sit amet purus malesuada blandit. Mauris gravida
-              augue non urna sodales porttitor. Etiam ullamcorper luctus ullamcorper. In lobortis
-              consequat ante.
+              <code>&lt;u&gt;</code>
+              <u>Underline</u>
             </p>
-          </details>
-
-          <section>
-            <h4>Stacked details ("Accordion style")</h4>
-            <details>
-              <summary>Accordion 1</summary>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-            </details>
-            <details>
-              <summary>Accordion 2</summary>
-              <p>
-                Praesent placerat velit lorem, feugiat congue lacus laoreet quis.
-              </p>
-            </details>
-            <details>
-              <summary>Accordion 3</summary>
-              <p>
-                Praesent maximus ex nec justo iaculis, in euismod eros dictum.
-              </p>
-            </details>
-          </section>
-        </section>
-        <section>
-          <h3 class="forTOC">Dialog</h3>
-          <dialog id="dialog-1">
-            <div>This is a test dialog</div>
-            <div>
-              <button onclick="document.querySelector('#dialog-1').removeAttribute('open');">Close Dialog</button>
-            </div>
-          </dialog>
-          <dialog id="dialog-2">
-            <h2>Dialog with heading</h2>
-            <div>This is a test dialog</div>
-            <div>
-              <button onclick="document.querySelector('#dialog-2').removeAttribute('open');">Close Dialog</button>
-            </div>
-          </dialog>
-          <dialog id="dialog-3">
-            <div>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-              <p>This is a test dialog with a long text.</p>
-            </div>
-            <button onclick="document.querySelector('#dialog-3').removeAttribute('open');">Close Dialog</button>
-          </dialog>
-          <button onclick="document.querySelector('#dialog-1').setAttribute('open', '');">Open Dialog</button>
-          <button onclick="document.querySelector('#dialog-2').setAttribute('open', '');">Open Dialog with Heading</button>
-          <button onclick="document.querySelector('#dialog-3').setAttribute('open', '');">Open Dialog with Long Text</button>
-        </section>
-        <section>
-          <h3 class="forTOC">Progress</h3>
-          <progress> 70% </progress><br />
-          <progress max="100" value="70"> 70% </progress>
-        </section>
-        <section>
-          <h3 class="forTOC">Definition Lists</h3>
-          <dl>
-            <dt>Term 1</dt>
-            <dd>Definition for term 1.</dd>
-            <dt>Term 2</dt>
-            <dd>Definition for term 2.</dd>
-            <dt>Term 3</dt>
-            <dd>Definition for term 3.</dd>
-          </dl>
-        </section>
-        <section>
-          <h3 class="forTOC">Pre</h3>
-          <pre>
-            This is a test
-            using
-            pre
-            with different
-            indentations
-          </pre>
-          <h4 class="forTOC">Pre with Code</h4>
-          <pre><code>#include &lt;stdio.h&gt;
-              // this is a line with really long text to show that now the gray background goes all the way, instead of limiting to the width of the main.
-              int main(void) {
-              printf("Hello World");
-              return 0;
-              }
-            </code></pre>
-        </section>
-      </section>
-
-      <section>
-        <h2 class="forTOC">Tabs</h2>
-        <p>
-          An accessible tabbed interface, based on attributes and roles.
-        </p>
-        <div class="tabs">
-          <input type="radio" name="tabs" id="tabone" checked="checked">
-          <label for="tabone">Tab One</label>
-          <div class="tab">
-            <h4>Tab One Content</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-          <input type="radio" name="tabs" id="tabtwo">
-          <label for="tabtwo">Tab Two</label>
-          <div class="tab">
-            <h4>Tab Two Content</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <pre><code>&lt;link rel="stylesheet" href="https://classless.de/classless-tiny.css"&gt;</code></pre>
-          </div>
-          <input type="radio" name="tabs" id="tabthree">
-          <label for="tabthree">Tab Three</label>
-          <div class="tab">
-            <h4>Tab Three Content</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>
+              <code>&lt;sample&gt;</code>
+              <sample>Sample</sample>
+            </p>
+            <p>
+              <code>&lt;quote&gt;</code>
+              <q>Quote</q>
+            </p>
           </div>
         </div>
       </section>
-    </article>
-    <nav class="toc">
-      <svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-        <path stroke="var(--secondary)" stroke-width="2" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" />
-      </svg>
-    </nav>
+
+
+
+      <section>
+
+        <header id="lists">
+          <h2 class="forTOC">Lists</h2>
+          <p>HTML lists allow web developers to group a set of related items in lists.</p>
+        </header>
+
+
+        <header id="list-definition">
+          <h3 class="forTOC">Definition List</h3>
+          <p>A description list is a list of terms, with a description of each term. The <code>&lt;dl&gt;</code> tag defines the description list, the <code>&lt;dt&gt;</code> tag defines the term (name), and the <code>&lt;dd&gt;</code> tag describes each term.</p>
+        </header>
+        <div class="flex-row" style="justify-content: space-between;">
+          <div class="definition-default">
+            <h4 class="headline">Default</h4>
+            <dl>
+              <dt>Theropods</dt>
+              <dd>Saurischian dinosaurs have two major subdivisions: theropods and sauropodomorphs. The theropods are a diverse and complex group that are famous for meat eating. There is evidence of other dinosaurs being omnivores, and there are some theropods that strayed from a carnivorous diet, but all of the famous dinosaurs with big sharp teeth are theropods.</dd>
+              <dt>Sauropodomorphs</dt>
+              <dd>Sauropodomorphs are a diverse group of herbivorous dinosaurs that are characterized by long necks and tails. They are the ancestors of the sauropods, which are the largest dinosaurs that ever lived. The sauropodomorphs are a diverse group, and they include some of the most famous dinosaurs, such as Diplodocus, Brachiosaurus, and Apatosaurus.</dd>
+              <dt>Ornithischians</dt>
+              <dd>Ornithischians are a diverse group of dinosaurs that are characterized by their bird-like hips. They are divided into two major groups: ornithopods and ceratopsians. The ornithopods are a diverse group of herbivorous dinosaurs that includes the famous duck-billed dinosaurs, such as Ankylosaurus and Stegosaurus. The ceratopsians are a diverse group of herbivorous dinosaurs that includes the famous horned dinosaurs, such as Triceratops and Centrosaurus.</dd>
+            </dl>
+          </div>
+
+          <div class="definition-column">
+            <h4 class="headline">Column</h4>
+            <dl class="column" style="--dt-width: 150px;">
+              <dt>Theropods</dt>
+              <dd>Saurischian dinosaurs have two major subdivisions: theropods and sauropodomorphs. The theropods are a diverse and complex group that are famous for meat eating. There is evidence of other dinosaurs being omnivores, and there are some theropods that strayed from a carnivorous diet, but all of the famous dinosaurs with big sharp teeth are theropods.</dd>
+              <dt>Sauropodomorphs</dt>
+              <dd>Sauropodomorphs are a diverse group of herbivorous dinosaurs that are characterized by long necks and tails. They are the ancestors of the sauropods, which are the largest dinosaurs that ever lived. The sauropodomorphs are a diverse group, and they include some of the most famous dinosaurs, such as Diplodocus, Brachiosaurus, and Apatosaurus.</dd>
+              <dt>Ornithischians</dt>
+              <dd>Ornithischians are a diverse group of dinosaurs that are characterized by their bird-like hips. They are divided into two major groups: ornithopods and ceratopsians. The ornithopods are a diverse group of herbivorous dinosaurs that includes the famous duck-billed dinosaurs, such as Ankylosaurus and Stegosaurus. The ceratopsians are a diverse group of herbivorous dinosaurs that includes the famous horned dinosaurs, such as Triceratops and Centrosaurus.</dd>
+            </dl>
+          </div>
+        </div>
+
+
+
+        <header>
+          <h3 id="list-ordered" class="forTOC">Ordered List</h3>
+          <p>An ordered list starts with the <code>&lt;ol&gt;</code> tag. Each list item starts with the <code>&lt;li&gt;</code> tag.</p>
+        </header>
+
+        <div class="flex-row" style="justify-content: space-between;">
+
+          <div class="type-1">
+            <h4 class="headline">Type 1</h4>
+            <ol>
+              <li>First item </li>
+              <li>Second item </li>
+              <li>Third item </li>
+              <li>Fourth item
+                <ol>
+                  <li>First item </li>
+                  <li>Second item </li>
+                  <li>Third item </li>
+                  <li>Fourth item </li>
+                  <li>Fifth item </li>
+                  <li>Sixth item </li>
+                  <li>Seventh item </li>
+                  <li>Eighth item </li>
+                  <li>Ninth item </li>
+                  <li>Tenth item </li>
+                </ol>
+              </li>
+              <li>Fifth item </li>
+              <li>Sixth item </li>
+              <li>Seventh item </li>
+              <li>Eighth item </li>
+              <li>Ninth item </li>
+              <li>Tenth item </li>
+            </ol>
+          </div>
+
+
+          <div class="type-A">
+            <h4 class="headline">Type A</h4>
+            <ol type="A">
+              <li>First item </li>
+              <li>Second item </li>
+              <li>Third item </li>
+              <li>Fourth item
+                <ol type="A">
+                  <li>First item </li>
+                  <li>Second item </li>
+                  <li>Third item </li>
+                  <li>Fourth item </li>
+                  <li>Fifth item </li>
+                  <li>Sixth item </li>
+                  <li>Seventh item </li>
+                  <li>Eighth item </li>
+                  <li>Ninth item </li>
+                  <li>Tenth item </li>
+                </ol>
+              </li>
+              <li>Fifth item </li>
+              <li>Sixth item </li>
+              <li>Seventh item </li>
+              <li>Eighth item </li>
+              <li>Ninth item </li>
+              <li>Tenth item </li>
+            </ol>
+          </div>
+
+
+          <div class="type-I">
+            <h4 class="headline">Type I</h4>
+            <ol type="I">
+              <li>First item </li>
+              <li>Second item </li>
+              <li>Third item </li>
+              <li>Fourth item
+                <ol type="I">
+                  <li>First item </li>
+                  <li>Second item </li>
+                  <li>Third item </li>
+                  <li>Fourth item </li>
+                  <li>Fifth item </li>
+                  <li>Sixth item </li>
+                  <li>Seventh item </li>
+                  <li>Eighth item </li>
+                  <li>Ninth item </li>
+                  <li>Tenth item </li>
+                </ol>
+              </li>
+              <li>Fifth item </li>
+              <li>Sixth item </li>
+              <li>Seventh item </li>
+              <li>Eighth item </li>
+              <li>Ninth item </li>
+              <li>Tenth item </li>
+            </ol>
+          </div>
+        </div>
+
+        <header>
+          <h3 id="list-unordered" class="forTOC">Unordered List</h3>
+          <p>An unordered list starts with the <code>&lt;ul&gt;</code> tag. Each list item starts with the <code>&lt;li&gt;</code> tag.</p>
+        </header>
+        <ul>
+          <li>Coffee</li>
+          <li>Tea
+            <ul>
+              <li>Black tea</li>
+              <li>Green tea</li>
+            </ul>
+          </li>
+          <li>Milk</li>
+          <li>Fruit
+            <ul>
+              <li>Bananas</li>
+              <li>Apples
+                <ul>
+                  <li>Green
+                    <ul>
+                      <li>Granny Smith</li>
+                      <li>Golden Delicious</li>
+                    </ul>
+                  </li>
+                  <li>Red
+                    <ul>
+                      <li>Red Delicious</li>
+                      <li>Jonathan</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>Pears</li>
+            </ul>
+          </li>
+          <li>Vegetables</li>
+        </ul>
+
+      </section>
+
+
+      <!-- UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT -->
+      <div style="text-align: center;">
+        <hr>
+        under development
+        <hr>
+      </div>
+      <!-- UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT  UNDER DEVELOPMENT -->
+
+
+
+      <article id="text__details">
+        <header>
+          <h1>Details / Summary</h1>
+        </header>
+        <details>
+          <summary>Expand for details</summary>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, odio! Odio natus ullam ad quaerat, eaque necessitatibus, aliquid distinctio similique voluptatibus dicta consequuntur animi. Quaerat facilis quidem unde eos! Ipsa.</p>
+        </details>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="text__address">
+        <header>
+          <h1>Address</h1>
+        </header>
+
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="text__hr">
+        <header>
+          <h2>Horizontal rules</h2>
+        </header>
+        <div>
+          <hr>
+        </div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="text__tables">
+        <header>
+          <h2>Tabular data</h2>
+        </header>
+        <table>
+          <caption>Table Caption</caption>
+          <thead>
+            <tr>
+              <th>Table Heading 1</th>
+              <th>Table Heading 2</th>
+              <th>Table Heading 3</th>
+              <th>Table Heading 4</th>
+              <th>Table Heading 5</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Table Footer 1</th>
+              <th>Table Footer 2</th>
+              <th>Table Footer 3</th>
+              <th>Table Footer 4</th>
+              <th>Table Footer 5</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr>
+              <td>Table Cell 1</td>
+              <td>Table Cell 2</td>
+              <td>Table Cell 3</td>
+              <td>Table Cell 4</td>
+              <td>Table Cell 5</td>
+            </tr>
+            <tr>
+              <td>Table Cell 1</td>
+              <td>Table Cell 2</td>
+              <td>Table Cell 3</td>
+              <td>Table Cell 4</td>
+              <td>Table Cell 5</td>
+            </tr>
+            <tr>
+              <td>Table Cell 1</td>
+              <td>Table Cell 2</td>
+              <td>Table Cell 3</td>
+              <td>Table Cell 4</td>
+              <td>Table Cell 5</td>
+            </tr>
+            <tr>
+              <td>Table Cell 1</td>
+              <td>Table Cell 2</td>
+              <td>Table Cell 3</td>
+              <td>Table Cell 4</td>
+              <td>Table Cell 5</td>
+            </tr>
+          </tbody>
+        </table>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="text__code">
+        <header>
+          <h2>Code</h2>
+        </header>
+        <div>
+          <p><strong>Keyboard input:</strong> <kbd>Cmd</kbd></p>
+          <p><strong>Inline code:</strong> <code>&lt;div&gt;code&lt;/div&gt;</code></p>
+          <p><strong>Sample output:</strong> <samp>This is sample output from a computer program.</samp></p>
+          <h2>Pre-formatted text</h2>
+          <pre>P R E F O R M A T T E D T E X T
+            ! " # $ % &amp; ' ( ) * + , - . /
+            0 1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ?
+            @ A B C D E F G H I J K L M N O
+            P Q R S T U V W X Y Z [ \ ] ^ _
+            ` a b c d e f g h i j k l m n o
+            p q r s t u v w x y z { | } ~ </pre>
+        </div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="text__inline">
+        <header>
+          <h2>Inline elements</h2>
+        </header>
+        <div>
+          <p><a href="#!">This is a link</a>.</p>
+          <p><strong>Strong is used to indicate strong importance.</strong></p>
+          <p><em>This has added emphasis.</em></p>
+          <p>The <b>b element</b> is stylistically different from normal text, without any special importance.</p>
+          <p>The <i>i element</i> is that is offset from the normal text.</p>
+          <p>The <u>u element</u> is with an unarticulated, though explicitly rendered, non-textual annotation.</p>
+          <p><del>This is deleted</del> and <ins>This is inserted</ins>.</p>
+          <p><s>This has a strikethrough</s>.</p>
+          <p>Superscript<sup>®</sup>.</p>
+          <p>Subscript for things like H<sub>2</sub>O.</p>
+          <p><small>This small is small for fine print, etc.</small></p>
+          <p>Abbreviation: <abbr title="HyperMarkup Language">HTML</abbr></p>
+          <p><q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">This is a short inline quotation.</q></p>
+          <p><cite>This is a citation.</cite></p>
+          <p>The <dfn>dfn element</dfn> indicates a definition.</p>
+          <p>The <mark>mark element</mark> indicates a highlight.</p>
+          <p>The <var>variable element</var>, such as <var>x</var> = <var>y</var>.</p>
+          <p>The time element: <time datetime="2013-04-06T12:32+00:00">2 weeks ago</time></p>
+        </div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="text__comments">
+        <header>
+          <h2>HTML Comments</h2>
+        </header>
+        <div>
+          <p>There is comment here: <!--This comment should not be displayed--></p>
+          <p>There is a comment spanning multiple tags and lines below here.</p>
+          <!--<p><a href="#!">This is a link. But it should not be displayed in a comment</a>.</p>
+              <p><strong>Strong is used to indicate strong importance. But, it should not be displayed in a comment</strong></p>
+              <p><em>This has added emphasis. But, it should not be displayed in a comment</em></p>-->
+        </div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+    </section>
+    <section id="embedded">
+      <header>
+        <h2>Embedded content</h2>
+      </header>
+      <article id="embedded__images">
+        <header>
+          <h2>Images</h2>
+        </header>
+        <div>
+          <h3>Plain <code>&lt;img&gt;</code> element</h3>
+          <p><img src="https://placekitten.com/480/480" alt="Photo of a kitten"></p>
+          <h3><code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> element</h3>
+          <figure><img src="https://placekitten.com/420/420" alt="Photo of a kitten"></figure>
+          <h3><code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> and <code>&lt;figcaption&gt;</code> elements</h3>
+          <figure>
+            <img src="https://placekitten.com/420/420" alt="Photo of a kitten">
+            <figcaption>Here is a caption for this image.</figcaption>
+          </figure>
+          <h3><code>&lt;figure&gt;</code> element with a <code>&lt;picture&gt;</code> element</h3>
+          <figure>
+            <picture>
+              <source srcset="https://placekitten.com/800/800" media="(min-width: 800px)">
+              <img src="https://placekitten.com/420/420" alt="Photo of a kitten" />
+            </picture>
+          </figure>
+        </div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="embedded__bgimages">
+        <header>
+          <h2>Background images</h2>
+        </header>
+        <div style="background-image:url('https://placekitten.com/300/300'); width:300px; height: 300px;"></div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="embedded__audio">
+        <header>
+          <h2>Audio</h2>
+        </header>
+        <div><audio controls="">audio</audio></div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="embedded__video">
+        <header>
+          <h2>Video</h2>
+        </header>
+        <div><video controls="">video</video></div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="embedded__canvas">
+        <header>
+          <h2>Canvas</h2>
+        </header>
+        <div><canvas>canvas</canvas></div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="embedded__meter">
+        <header>
+          <h2>Meter</h2>
+        </header>
+        <div><meter value="2" min="0" max="10">2 out of 10</meter></div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="embedded__progress">
+        <header>
+          <h2>Progress</h2>
+        </header>
+        <div><progress>progress</progress></div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <article id="embedded__svg">
+        <header>
+          <h2>Inline SVG</h2>
+        </header>
+        <div><svg width="100px" height="100px">
+            <circle cx="100" cy="100" r="100" fill="#1fa3ec"></circle>
+          </svg></div>
+        <footer>
+          <p><a href="#top">[Top]</a></p>
+        </footer>
+      </article>
+      <!-- <article id="embedded__iframe">
+          <header>
+            <h2>IFrame</h2>
+          </header>
+          <div><iframe src="index.html" height="300"></iframe></div>
+          <footer>
+            <p><a href="#top">[Top]</a></p>
+          </footer>
+        </article>
+        <article id="embedded__embed">
+          <header>
+            <h2>Embed</h2>
+          </header>
+          <div><embed src="index.html" height="300"></div>
+          <footer>
+            <p><a href="#top">[Top]</a></p>
+          </footer>
+        </article>
+        <article id="embedded__object">
+          <header>
+            <h2>Object</h2>
+          </header>
+          <div><object data="index.html" height="300"></object></div>
+          <footer>
+            <p><a href="#top">[Top]</a></p>
+          </footer>
+        </article> -->
+    </section>
+    <section id="forms">
+      <header>
+        <h2>Form elements</h2>
+      </header>
+      <form>
+        <fieldset id="forms__input">
+          <legend>Input fields</legend>
+          <p>
+            <label for="input__text">Input</label>
+            <input id="input__text" type="text" placeholder="Input">
+          </p>
+          <p>
+            <label for="input__password">Password</label>
+            <input id="input__password" type="password" placeholder="Type your Password">
+          </p>
+          <p>
+            <label for="input__webaddress">Web Address</label>
+            <input id="input__webaddress" type="url" placeholder="https://yoursite.com">
+          </p>
+          <p>
+            <label for="input__emailaddress">Email Address</label>
+            <input id="input__emailaddress" type="email" placeholder="name@email.com">
+          </p>
+          <p>
+            <label for="input__phone">Phone Number</label>
+            <input id="input__phone" type="tel" placeholder="(999) 999-9999">
+          </p>
+          <p>
+            <label for="input__search">Search</label>
+            <input id="input__search" type="search" placeholder="Enter Search Term">
+          </p>
+          <p>
+            <label for="input__text2">Number Input</label>
+            <input id="input__text2" type="number" placeholder="Enter a Number">
+          </p>
+          <p>
+            <label for="input__file">File Input</label>
+            <input id="input__file" type="file">
+          </p>
+        </fieldset>
+        <p><a href="#top">[Top]</a></p>
+        <fieldset id="forms__select">
+          <legend>Select menus</legend>
+          <p>
+            <label for="select">Select</label>
+            <select id="select">
+              <optgroup label="Option Group">
+                <option>Option One</option>
+                <option>Option Two</option>
+                <option>Option Three</option>
+              </optgroup>
+            </select>
+          </p>
+          <p>
+            <label for="select_multiple">Select (multiple)</label>
+            <select id="select_multiple" multiple="multiple">
+              <optgroup label="Option Group">
+                <option>Option One</option>
+                <option>Option Two</option>
+                <option>Option Three</option>
+              </optgroup>
+            </select>
+          </p>
+        </fieldset>
+        <p><a href="#top">[Top]</a></p>
+        <fieldset id="forms__checkbox">
+          <legend>Checkboxes</legend>
+          <ul>
+            <li><label for="checkbox1"><input id="checkbox1" name="checkbox" type="checkbox" checked="checked"> Choice A</label></li>
+            <li><label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox"> Choice B</label></li>
+            <li><label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox"> Choice C</label></li>
+          </ul>
+        </fieldset>
+        <p><a href="#top">[Top]</a></p>
+        <fieldset id="forms__radio">
+          <legend>Radio buttons</legend>
+          <ul>
+            <li><label for="radio1"><input id="radio1" name="radio" type="radio" checked="checked"> Option 1</label></li>
+            <li><label for="radio2"><input id="radio2" name="radio" type="radio"> Option 2</label></li>
+            <li><label for="radio3"><input id="radio3" name="radio" type="radio"> Option 3</label></li>
+          </ul>
+        </fieldset>
+        <p><a href="#top">[Top]</a></p>
+        <fieldset id="forms__textareas">
+          <legend>Textareas</legend>
+          <p>
+            <label for="textarea">Textarea</label>
+            <textarea id="textarea" rows="8" cols="48" placeholder="Enter your message here"></textarea>
+          </p>
+        </fieldset>
+        <p><a href="#top">[Top]</a></p>
+        <fieldset id="forms__HTML">
+          <legend>HTML inputs</legend>
+          <p>
+            <label for="ic">Color input</label>
+            <input type="color" id="ic" value="#000000">
+          </p>
+          <p>
+            <label for="in">Number input</label>
+            <input type="number" id="in" min="0" max="10" value="5">
+          </p>
+          <p>
+            <label for="ir">Range input</label>
+            <input type="range" id="ir" value="10">
+          </p>
+          <p>
+            <label for="idd">Date input</label>
+            <input type="date" id="idd" value="1970-01-01">
+          </p>
+          <p>
+            <label for="idm">Month input</label>
+            <input type="month" id="idm" value="1970-01">
+          </p>
+          <p>
+            <label for="idw">Week input</label>
+            <input type="week" id="idw" value="1970-W01">
+          </p>
+          <p>
+            <label for="idt">Datetime input</label>
+            <input type="datetime" id="idt" value="1970-01-01T00:00:00Z">
+          </p>
+          <p>
+            <label for="idtl">Datetime-local input</label>
+            <input type="datetime-local" id="idtl" value="1970-01-01T00:00">
+          </p>
+          <p>
+            <label for="idl">Datalist</label>
+            <input type="text" id="idl" list="example-list">
+            <datalist id="example-list">
+              <option value="Example #1" />
+              <option value="Example #2" />
+              <option value="Example #3" />
+            </datalist>
+          </p>
+        </fieldset>
+        <p><a href="#top">[Top]</a></p>
+        <fieldset id="forms__action">
+          <legend>Action buttons</legend>
+          <p>
+            <input type="submit" value="<input type=submit>">
+            <input type="button" value="<input type=button>">
+            <input type="reset" value="<input type=reset>">
+            <input type="submit" value="<input disabled>" disabled>
+          </p>
+          <p>
+            <button type="submit">&lt;button type=submit&gt;</button>
+            <button type="button">&lt;button type=button&gt;</button>
+            <button type="reset">&lt;button type=reset&gt;</button>
+            <button type="button" disabled>&lt;button disabled&gt;</button>
+          </p>
+        </fieldset>
+        <p><a href="#top">[Top]</a></p>
+      </form>
+    </section>
+
   </main>
 
   <footer>
@@ -890,7 +948,7 @@
         the responsive CSS for the headings
       </dd>
       <dd>
-        <a href="https://codepen.io/cgurski/pen/qBrNrPo" target="_blank">Vanilla JavaScript Table of Contents Generator with Active Link</a>
+        <a href="https://codepen.io/cgurski/pen/qBrNrPo" target="_blank">Table of Contents Generator</a>
         the JavaScript for the table of contents
       </dd>
       <dd>
@@ -911,11 +969,5 @@
 <script src="./js/toggleTheme.js"></script>
 
 <script src="./js/toc.js"></script>
-<script>
-  document.querySelector(nav).classList.toggle('show');
-  tocIcon.onclick = () => {
-    nav.classList.toggle('show');
-  }
-</script>
 
 </html>
